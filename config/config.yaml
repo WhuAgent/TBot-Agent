@@ -1,0 +1,5 @@
+# chromedriver 路径
+chromedriver_path: "assets/chromedriver.exe"
+
+# miniwob 环境根目录
+miniwob_dir: "env/miniwob/miniwob_interface/html/miniwob"

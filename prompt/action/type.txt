@@ -1,0 +1,4 @@
+def type(self, content):
+    """
+    清空找到元素的原有内容，并输入内容 content。在进行 type 动作之前必须先通过 find_element 动作找到要输入内容的元素。
+    """
