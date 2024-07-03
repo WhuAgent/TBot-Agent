@@ -1,0 +1,4 @@
+def WordCloseDocument(self):
+    """
+    关闭文档
+    """

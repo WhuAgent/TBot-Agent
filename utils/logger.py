@@ -17,6 +17,7 @@ class Logger:
     def log(self, content):
         if not isinstance(content, str):
             content = json.dumps(content, indent=4)
+        print(content)
         with open(self.file_path, 'a', encoding="UTF-8") as f:
             f.write(content)
             f.write("\n")

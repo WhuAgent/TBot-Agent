@@ -7,12 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 
-def read_yaml(yaml_path):
-    with open(yaml_path, "r", encoding="UTF-8") as fp:
-        data = yaml.safe_load(fp)
-    return data
-
-
 def get_tasks(root):
     items = os.listdir(root)
 
@@ -81,40 +75,3 @@ def get_prompts(task, html_description, form_data_status):
         task_prompt = task_prompt.replace("{form_data_status}", json.dumps(form_data_status, indent=4))
 
     return system_prompt, task_prompt
-
-
-openai_config_path = os.path.join(os.path.dirname(__file__), "..", "config", "openai_config.yaml")
-openai_config = read_yaml(openai_config_path)
-
-
-def llm(model, prompt, stop=None):
-    if stop is None:
-        stop = ["\n"]
-
-    openai_client = OpenAI(
-        api_key=openai_config["api_key"],
-        base_url=openai_config["base_url"]
-    )
-    response = openai_client.completions.create(
-        model=model,
-        prompt=prompt,
-        temperature=0,
-        max_tokens=100,
-        top_p=1,
-        frequency_penalty=0.0,
-        presence_penalty=0.0,
-        stop=stop
-    )
-    return response.choices[0].text
-
-
-def chat_llm(model, messages):
-    openai_client = OpenAI(
-        api_key=openai_config["api_key"],
-        base_url=openai_config["base_url"]
-    )
-    response = openai_client.chat.completions.create(
-        messages=messages,
-        model=model
-    )
-    return response.choices[0].message

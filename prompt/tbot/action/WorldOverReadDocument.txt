@@ -1,0 +1,9 @@
+def WorldOverReadDocument(self, content):
+    """
+    清空文档中的原有内容，并写入新的内容。
+    ---
+    参数:
+        content: 要写入的内容
+    返回值:
+        无返回值
+    """

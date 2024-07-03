@@ -1,12 +1,11 @@
 import json
 import os
-import re
 from lxml import html
 
 from selenium.webdriver.common.by import By
 
 from model.html_parser.config import form_data_parser_map
-from model.logger import Logger
+from utils.logger import Logger
 from model.utils import get_prompts, get_webdriver, html_status2description
 from model.exceptions import FailedError
 
