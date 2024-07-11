@@ -1,0 +1,12 @@
+def ExcelAddWorksheet(self, sheet_name, aim_sheet_name):
+    """
+    添加新的工作表
+    ---
+    参数：
+        sheet_name: 当前工作表名称
+        aim_sheet_name: 新工作表的名称
+    返回值：
+        无返回值
+    """
+     
+
