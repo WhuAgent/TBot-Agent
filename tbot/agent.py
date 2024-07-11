@@ -22,8 +22,40 @@ class TBotAgent:
         self.action_func_map = {
             "WordCloseDocument": self.word_close_document,
             "WordOpenDocument": self.word_open_document,
-            "WorldOverReadDocument": self.world_over_read_document
+            "WorldOverReadDocument": self.world_over_read_document,
+            "ReadTextFile": self.read_text_file,
+            "WriteTextFile": self.write_text_file,
+            "GetFileName": self.get_file_name,
+            "GetFileExtension": self.get_file_extension,
+            "GetParentFile": self.get_parent_file,
+            "GetFileSize": self.get_file_size,
+            "GetFolderSize": self.get_folder_size,
+            "MoveFile": self.move_file,
+            "MoveFolder": self.move_folder,
+            "RenameFile": self.rename_file,
+            "DeleteFile": self.delete_file,
+            "DeleteFolder": self.delete_folder,
+            "CreateFolder": self.create_folder,
+            "CheckFileExists": self.check_file_exists,
+            "CheckFolderExists": self.check_folder_exists,
+            "ExcelGetColumnData": self.excel_get_column_data,
+            "ExcelSetColumn": self.excel_set_column,
+            "ExcelInsertColumn": self.excel_insert_column,
+            "ExcelDeleteColumn": self.excel_delete_column,
+            "ExcelGetRowNumber": self.excel_get_row_number,
+            "ExcelGetColumnNumber": self.excel_get_column_number,
+            "ExcelMergeCell": self.excel_merge_cell,
+            "ExcelColumnWidth": self.excel_column_width,
+            "ExcelRowHeight": self.excel_row_height,
+            "ExcelBackgroundColor": self.excel_background_color,
+            "ExcelFontColor": self.excel_font_color,
+            "ExcelAddWorksheet": self.excel_add_worksheet,
+            "ExcelGetWorkSheet": self.excel_get_worksheet,
+            "ExcelGetAllWorkSheet": self.excel_get_all_worksheet,
+            "ExcelRenameWorkSheet": self.excel_rename_worksheet,
+            "ExcelGetFontColor": self.excel_get_font_color
         }
+
 
     def plan(self):
         response = chat_llm(self.model, self.messages)
@@ -66,7 +98,7 @@ class TBotAgent:
     def excel_get_column_data(self, args):
         sheet_name = args.get("sheet_name")
         column_name = args.get("column_name")
-        return f'ExcelGetColumnData(v_Excel, "{sheet_name}", "{column_name}", "0", "0", "false")'
+        return f'v_Array = ExcelGetColumnData(v_Excel, "{sheet_name}", "{column_name}", "0", "0", "false")'
     
     def excel_set_column(self, args):
         sheet_name = args.get("sheet_name")
@@ -87,11 +119,11 @@ class TBotAgent:
 
     def excel_get_row_number(self, args):
         sheet_name = args.get("sheet_name")
-        return f'ExcelGetRowNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
+        return f'v_Ret = ExcelGetRowNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
 
     def excel_get_column_number(self, args):
         sheet_name = args.get("sheet_name")
-        return f'ExcelGetColumnNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
+        return f'v_Ret = ExcelGetColumnNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
     
     def excel_merge_cell(self, args):
         sheet_name = args.get("sheet_name")
@@ -126,7 +158,7 @@ class TBotAgent:
     def excel_get_font_color(self, args):
         sheet_name = args.get("sheet_name")
         cell_name = args.get("cell_name")
-        return f'ExcelGetFontColor(v_Excel,“{sheet_name}”,“{cell_name}”,“0”,“0”,“false”)'
+        return f'v_Ret = ExcelGetFontColor(v_Excel,“{sheet_name}”,“{cell_name}”,“0”,“0”,“false”)'
     
     def excel_add_worksheet(self, args):
         sheet_name = args.get("sheet_name") 
@@ -134,10 +166,10 @@ class TBotAgent:
         return f'ExcelAddWorksheet(v_Excel,“{sheet_name}”,“{aim_sheet_name}”,“目标工作表之后”,“0”,“0”,“false”)'
     
     def excel_get_worksheet(self, args):
-        return f'ExcelGetWorkSheet(v_Excel,“是”,“0”,“0”,“false”)'
+        return f'v_Ret = ExcelGetWorkSheet(v_Excel,“是”,“0”,“0”,“false”)'
     
     def excel_get_all_worksheet(self, args):
-        return f'ExcelGetAllWorkSheet(v_Excel,“0”,“0”,“false”)'
+        return f'v_Array = ExcelGetAllWorkSheet(v_Excel,“0”,“0”,“false”)'
     
     def excel_rename_worksheet(self, args):
         old_sheet_name = args.get("old_sheet_name")
@@ -147,7 +179,7 @@ class TBotAgent:
     #file
     def read_text_file(self, args):
         file_path = args.get("file_path")
-        return f'ReadTextFile(“{file_path}”,“Content”,“0”,“0”,“false”)'
+        return f'v_Ret = ReadTextFile(“{file_path}”,“Content”,“0”,“0”,“false”)'
     
     def write_text_file(self, args):
         file_path = args.get("file_path")
@@ -156,23 +188,23 @@ class TBotAgent:
     
     def get_file_name(self, args):
         file_path = args.get("file_path")
-        return f'GetFileName(“{file_path}”,“Yes”,“0”,“0”,“false”)'
+        return f'v_Ret = GetFileName(“{file_path}”,“Yes”,“0”,“0”,“false”)'
     
     def get_file_extension(self, args):
         file_path = args.get("file_path")
-        return f'GetFileExtension(“{file_path}”,“0”,“0”,“false”)'
+        return f'v_Ret = GetFileExtension(“{file_path}”,“0”,“0”,“false”)'
     
     def get_parent_file(self, args):
         file_path = args.get("file_path")
-        return f'GetParentFile(“{file_path}”,“0”,“0”,“false”)'
+        return f'v_Ret = GetParentFile(“{file_path}”,“0”,“0”,“false”)'
     
     def get_file_size(self, args):
         file_path = args.get("file_path")
-        return f'GetFileSize(“{file_path}”,“0”,“0”,“false”)'
+        return f'v_Ret = GetFileSize(“{file_path}”,“0”,“0”,“false”)'
     
     def get_folder_size(self, args):
         folder_path = args.get("folder_path")
-        return f'GetFolderSize(“{folder_path}”,“0”,“0”,“false”)'
+        return f'v_Ret = GetFolderSize(“{folder_path}”,“0”,“0”,“false”)'
     
     def move_file(self, args):
         action_name = args.get("action_name")#复制文件/移动文件
@@ -205,11 +237,11 @@ class TBotAgent:
     
     def check_file_exists(self, args):
         file_path = args.get("file_path")
-        return f'CheckFileExists(“{file_path}”,“0”,“0”,“false”)'
+        return f'v_BRet = CheckFileExists(“{file_path}”,“0”,“0”,“false”)'
     
     def check_folder_exists(self, args):
         folder_path = args.get("folder_path")
-        return f'CheckFolderExists(“{folder_path}”,“0”,“0”,“false”)'
+        return f'v_BRet = CheckFolderExists(“{folder_path}”,“0”,“0”,“false”)'
     
 
     def log(self, content):
