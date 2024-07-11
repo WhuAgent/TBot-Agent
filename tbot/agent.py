@@ -152,8 +152,8 @@ class TBotAgent:
     def write_text_file(self, args):
         file_path = args.get("file_path")
         content = args.get("content")
-        return f'WriteTextFile(“{file_path}”,“{content}”,“Overwrite”,“0”,“0”,“false”)
-'
+        return f'WriteTextFile(“{file_path}”,“{content}”,“Overwrite”,“0”,“0”,“false”)'
+    
     def get_file_name(self, args):
         file_path = args.get("file_path")
         return f'GetFileName(“{file_path}”,“Yes”,“0”,“0”,“false”)'
