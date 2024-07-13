@@ -1,0 +1,46 @@
+1.获取所有桌面应用程序元素特征  
+    命令行启动 "TBotCaptureTool.exe"
+
+2.获取指定应用元素特征
+    命令行启动 "TBotCaptureTool.exe 进程名", 例如"TBotCaptureTool.exe chrome"
+
+数据结构如下：
+Project：进程名称
+ClassName：窗口类名
+Title：窗口标题
+NativeWindowHandle：句柄
+ProcessId：进程id
+Children：子元素信息
+
+{
+  "win": [
+    {
+      "Project": "gethandle",
+      "ClassName": "WindowsForms10.Window.8.app.0.141b42a_r6_ad1",
+      "Title": "Form2",
+      "NativeWindowHandle": 1903166,
+      "ProcessId": 17028,
+      "Children": [
+        {
+          "NativeWindowHandle": 395966,
+          "AutomationId": "listBox1",
+          "FrameworkId": "WinForm",
+          "LocalizedControlType": "列表",
+          "Name": "双击试试",
+          "Value": "",
+          "Children": [
+            {
+              "NativeWindowHandle": 0,
+              "AutomationId": "",
+              "FrameworkId": "",
+              "LocalizedControlType": "列表项目",
+              "Name": "北京",
+              "Value": "",
+              "Children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
