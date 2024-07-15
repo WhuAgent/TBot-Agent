@@ -1,0 +1,4 @@
+def WordPasteSelectTextContentCommnad(self):
+    """
+    对文档中被选中的区域执行粘贴操作
+    """

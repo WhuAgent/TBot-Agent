@@ -35,7 +35,7 @@ class TBotAgent:
             "WordSetCursorPosition": self.word_set_cursor_position,
             "WorkSelectTextContentPosition": self.work_select_text_content_position,
             "WorldOverReadDocument": self.world_over_read_document,
-
+            "WordPasteSelectTextContentCommnad": self.word_paste_select_text_content_commnad,
         }
 
     def plan(self):
@@ -128,6 +128,9 @@ class TBotAgent:
 
     def word_save(self, args):
         return 'WordSave(v_Word, "0", "0", "false")'
+
+    def word_paste_select_text_content_commnad(self, args):
+        return f'WordPasteSelectTextContentCommnad(v_Word,"0","0","false")'
 
     def log(self, content):
         self.logger.log(content)

@@ -4,7 +4,7 @@ def WordSetCursorPosition(self, move_num, move_type):
     ---
     参数：
         move_num: 光标移动次数
-        move_type: 光标移动方式（"行", "段落", "字段"）
+        move_type: 光标移动方式（"行", "段落", "字符"）
     返回值：
         无返回值
     """
