@@ -20,9 +20,22 @@ class TBotAgent:
             self.log(f"{message['role']}:\n{message['content']}")
 
         self.action_func_map = {
+            "WordAddDocument": self.word_add_document,
             "WordCloseDocument": self.word_close_document,
+            "WordCutSelectTextContentCommnad": self.word_cut_select_text_content_commnad,
+            "WordExportToPDF": self.word_export_to_pdf,
+            "WordGetFilePath": self.word_get_file_path,
+            "WordMoveSetCursor": self.word_move_set_cursor,
             "WordOpenDocument": self.word_open_document,
-            "WorldOverReadDocument": self.world_over_read_document
+            "WordReadDocument": self.word_read_document,
+            "WordSave": self.word_save,
+            "WordSaveAs": self.word_save_as,
+            "WordSelectAll": self.word_select_all,
+            "WordSelectLine": self.word_select_line,
+            "WordSetCursorPosition": self.word_set_cursor_position,
+            "WorkSelectTextContentPosition": self.work_select_text_content_position,
+            "WorldOverReadDocument": self.world_over_read_document,
+
         }
 
     def plan(self):
@@ -50,8 +63,57 @@ class TBotAgent:
         result = self.action_func_map[action_name](action_args)
         return result
 
+
+    def word_add_document(self, args):
+        return 'WordAddDocument(v_Word,"0","0","false")'
+
     def word_close_document(self, args):
         return 'WordCloseDocument(v_Word,"是","0","0","false")'
+
+    def word_save(self, args):
+        return 'WordSave(v_Word, "0","0","false")'
+
+    def word_save_as(self, args):
+        file_path = args.get("file_path")
+        return f'WordSaveAs(v_Word,"{file_path}","0","0","false")'
+
+    def word_export_to_pdf(self, args):
+        file_path = args.get("file_path")
+        return f'WordExportToPDF(v_Word,"{file_path}","0","0","false")'
+
+    def word_get_file_path(self, args):
+        return 'v_Ret = WordGetFilePath(v_Word,"0","0","false")'
+
+    def word_read_document(self, args):
+        return 'v_Ret = WordReadDocument(v_Word,"0","0","false")'
+
+    def word_set_cursor_position(self, args):
+        move_num = args.get("move_num")
+        move_type = args.get("move_type")
+        return f'WordSetCursorPosition(v_Word,"{move_num}","{move_type}")'
+
+    def work_select_text_content_position(self, args):
+        content = args.get("content")
+        curse_position = args.get("curse_position")
+        return f'WorkSelectTextContentPosition(v_Word,"{content}","{curse_position}","0","0","false")'
+
+    def word_move_set_cursor(self, args):
+        move_num = args.get("move_num")
+        move_type = args.get("move_type")
+        move_direction = args.get("move_direction")
+        is_press_shift = args.get("is_press_shift")
+        return f'WordMoveSetCursor(v_Word,"{move_num}","{move_type}","{move_direction}","{is_press_shift}","0","0","false")'
+
+    def word_select_line(self, args):
+        start_line = args.get("start_line")
+        end_line = args.get("end_line")
+        return f'WordSelectLine(v_Word,"{start_line}","{end_line}","0","0","false")'
+
+    def word_select_all(self, args):
+        return 'WordSelectAll(v_Word,"0","0","false")'
+
+    def word_cut_select_text_content_commnad(self, args):
+        return 'WordCutSelectTextContentCommnad(v_Word,"0","0","false")'
 
     def word_open_document(self, args):
         file_path = args.get("file_path")
@@ -60,6 +122,12 @@ class TBotAgent:
     def world_over_read_document(self, args):
         content = args.get("content")
         return f'WorldOverReadDocument(v_Word, "{content}","0","0","false")'
+
+    def word_add_document(self, args):
+        return 'WordAddDocument(v_Word, "0", "0", "false")'
+
+    def word_save(self, args):
+        return 'WordSave(v_Word, "0", "0", "false")'
 
     def log(self, content):
         self.logger.log(content)

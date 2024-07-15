@@ -1,0 +1,10 @@
+def WordSelectLine(self, start_line, end_line):
+    """
+    按照索引选中文档中的行。
+    ---
+    参数：
+        start_line: 选中文档的起始行
+        end_line: 选中文档的结束行
+    返回值：
+        无返回值
+    """

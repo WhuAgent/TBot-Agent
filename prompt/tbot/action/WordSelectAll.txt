@@ -1,0 +1,4 @@
+def WordSelectAll():
+    """
+    关闭文档
+    """

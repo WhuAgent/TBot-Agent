@@ -1,0 +1,10 @@
+def WordSetCursorPosition(self, move_num, move_type):
+    """
+    设置光标在文档中移动的位置
+    ---
+    参数：
+        move_num: 光标移动次数
+        move_type: 光标移动方式（"行", "段落", "字段"）
+    返回值：
+        无返回值
+    """

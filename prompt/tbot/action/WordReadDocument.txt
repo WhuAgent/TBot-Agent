@@ -1,0 +1,4 @@
+def WordReadDocument(self):
+    """
+    读取 Word 文档内的全部内容并输出到对象
+    """

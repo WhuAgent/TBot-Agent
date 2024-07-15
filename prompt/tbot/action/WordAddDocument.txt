@@ -1,0 +1,4 @@
+def WordAddDocument(self):
+    """
+    不知道这有什么用
+    """

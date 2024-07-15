@@ -1,0 +1,4 @@
+WordGetFilePath(self):
+    """
+    获取文档路径，输出到指定位置
+    """

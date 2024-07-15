@@ -1,0 +1,4 @@
+def WordCutSelectTextContentCommnad(self):
+    """
+    对文档的选区执行剪切操作
+    """
