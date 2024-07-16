@@ -1,0 +1,9 @@
+def WordPasteSelectTextContentCommnad(document):
+    """
+    对文档中被选中的区域执行粘贴操作
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        无返回值
+    """
