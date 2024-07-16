@@ -1,6 +1,7 @@
 log/
 .idea/
 openai_config.yaml
+utils/TBotCaptureTool/ElementPars.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
