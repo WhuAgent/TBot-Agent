@@ -1,8 +1,15 @@
 import json
+import re
+import yaml
 
 from tbot.utils import get_system_prompt, get_task_prompt
 from utils.logger import Logger
 from utils.llm import chat_llm
+from utils.function import dynamic_import
+
+action_module_config_path = "config/actions/action_module_config.yaml"
+with open(action_module_config_path, "r", encoding="UTF-8") as f:
+    action_module_config = yaml.safe_load(f)
 
 
 class TBotAgent:
@@ -19,230 +26,63 @@ class TBotAgent:
         for message in self.messages:
             self.log(f"{message['role']}:\n{message['content']}")
 
-        self.action_func_map = {
-            "WordCloseDocument": self.word_close_document,
-            "WordOpenDocument": self.word_open_document,
-            "WorldOverReadDocument": self.world_over_read_document,
-            "ReadTextFile": self.read_text_file,
-            "WriteTextFile": self.write_text_file,
-            "GetFileName": self.get_file_name,
-            "GetFileExtension": self.get_file_extension,
-            "GetParentFile": self.get_parent_file,
-            "GetFileSize": self.get_file_size,
-            "GetFolderSize": self.get_folder_size,
-            "MoveFile": self.move_file,
-            "MoveFolder": self.move_folder,
-            "RenameFile": self.rename_file,
-            "DeleteFile": self.delete_file,
-            "DeleteFolder": self.delete_folder,
-            "CreateFolder": self.create_folder,
-            "CheckFileExists": self.check_file_exists,
-            "CheckFolderExists": self.check_folder_exists,
-            "ExcelGetColumnData": self.excel_get_column_data,
-            "ExcelSetColumn": self.excel_set_column,
-            "ExcelInsertColumn": self.excel_insert_column,
-            "ExcelDeleteColumn": self.excel_delete_column,
-            "ExcelGetRowNumber": self.excel_get_row_number,
-            "ExcelGetColumnNumber": self.excel_get_column_number,
-            "ExcelMergeCell": self.excel_merge_cell,
-            "ExcelColumnWidth": self.excel_column_width,
-            "ExcelRowHeight": self.excel_row_height,
-            "ExcelBackgroundColor": self.excel_background_color,
-            "ExcelFontColor": self.excel_font_color,
-            "ExcelAddWorksheet": self.excel_add_worksheet,
-            "ExcelGetWorkSheet": self.excel_get_worksheet,
-            "ExcelGetAllWorkSheet": self.excel_get_all_worksheet,
-            "ExcelRenameWorkSheet": self.excel_rename_worksheet,
-            "ExcelGetFontColor": self.excel_get_font_color
-        }
+        self.plan = []
 
-
-    def plan(self):
+    def generate_plan(self):
         response = chat_llm(self.model, self.messages)
         self.log(f"{response.role}:\n{response.content}")
         self.messages.append({"role": response.role, "content": response.content})
-        return json.loads(response.content)
 
-    def step(self, action):
-        action_name = action.get("action")
-        action_args = action.get("args")
+        # 提取 json 字段
+        pattern = r"```(?:json|yaml)?([\s\S]*?)```"
+        plan = re.findall(pattern, response.content)
+        plan = plan[0]
+        self.plan = json.loads(plan)
+        return self.plan
 
-        # TODO: 一步一步交互时执行动作之后的 observation
-        # config_path = f"model/tbot/action_observation_config/{action_name}.json"
-        # with open(config_path, "r", encoding="UTF-8") as f:
-        #     config = json.load(f)
+    def generate_code(self):
+        variable_defines = []
+        codes = []
+        for step in self.plan:
+            action = step["action"]
+            args = step.get("args")
+            if step.get("rets"):
+                for variable in step.get("rets").values():
+                    variable_defines.append(variable)
+                args.update(step.get("rets"))
+            action_module = action_module_config[action]
+            _, action_func = dynamic_import(action_module, action)
+            code = action_func(args)
+            codes.append(code)
 
-        # try:
-        #     result = self.action_func_map[action_name](action_args)
-        # except Exception as e:
-        #     observation = generate_observation(config[str(type(e).__name__)])
-        # else:
-        #     observation = generate_observation(config["Success"], **result)
+        # 代码拼接
+        lines = []
+        for variable in variable_defines:
+            lines.append(f'Dim {variable} = \"\"')
+        lines.append('\n')
+        for code in codes:
+            lines.append(code)
 
-        result = self.action_func_map[action_name](action_args)
-        return result
+        return '\n'.join(lines)
 
-    def word_close_document(self, args):
-        return 'WordCloseDocument(v_Word,"是","0","0","false")'
-
-    def word_open_document(self, args):
-        file_path = args.get("file_path")
-        return f'v_Word = WordOpenDocument("是","{file_path}","是","0","0","false")'
-
-    def world_over_read_document(self, args):
-        content = args.get("content")
-        return f'WorldOverReadDocument(v_Word, "{content}","0","0","false")'
-    
-    #todo: add more actions
-    #excel
-    def excel_get_column_data(self, args):
-        sheet_name = args.get("sheet_name")
-        column_name = args.get("column_name")
-        return f'v_Array = ExcelGetColumnData(v_Excel, "{sheet_name}", "{column_name}", "0", "0", "false")'
-    
-    def excel_set_column(self, args):
-        sheet_name = args.get("sheet_name")
-        column_name = args.get("column_name")
-        content = args.get("content")
-        return f'ExcelSetColumn(v_Excel,“{sheet_name}”,“{column_name}”,"{content}",“是”,“0”,“0”,“false”)'
-    
-    def excel_insert_column(self, args):
-        sheet_name = args.get("sheet_name")
-        column_name = args.get("column_name")
-        content = args.get("content")
-        return f'ExcelInsertColumn(v_Excel,“{sheet_name}”,“{column_name}”,"{content}",“是”,“0”,“0”,“false”)'
-    
-    def excel_delete_column(self, args):
-        sheet_name = args.get("sheet_name")
-        column_name = args.get("column_name")
-        return f'ExcelDeleteColumn(v_Excel,“{sheet_name}”,“{column_name}”,“是”,“0”,“0”,“false”)'
-
-    def excel_get_row_number(self, args):
-        sheet_name = args.get("sheet_name")
-        return f'v_Ret = ExcelGetRowNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
-
-    def excel_get_column_number(self, args):
-        sheet_name = args.get("sheet_name")
-        return f'v_Ret = ExcelGetColumnNumber(v_Excel,“{sheet_name}”,“0”,“0”,“false”)'
-    
-    def excel_merge_cell(self, args):
-        sheet_name = args.get("sheet_name")
-        cell_name = args.get("cell_name")
-        action_name = args.get("action_name")
-        return f'ExcelMergeCell(v_Excel,“{sheet_name}”,“{cell_name}”,“{action_name}”,“是”,“0”,“0”,“false”)'
-    
-    def excel_column_width(self, args):
-        sheet_name = args.get("sheet_name")
-        column_name = args.get("column_name")
-        width = args.get("width")
-        return f'ExcelColumnWidth(v_Excel,“{sheet_name}”,“{column_name}”,“{width}”,“是”,“0”,“0”,“false”)'
-    
-    def excel_row_height(self, args):
-        sheet_name = args.get("sheet_name")
-        row_name = args.get("row_name")
-        height = args.get("height")
-        return f'ExcelRowHeight(v_Excel,“{sheet_name}”,“{row_name}”,“{height}”,“是”,“0”,“0”,“false”)'
-    
-    def excel_background_color(self, args):
-        sheet_name = args.get("sheet_name")
-        cell_name = args.get("cell_name")
-        color = args.get("color")
-        return f'ExcelBackgroundColor(v_Excel,“{sheet_name}”,“{cell_name}”,“{color}”,“是”,“0”,“0”,“false”)'
-    
-    def excel_font_color(self, args):
-        sheet_name = args.get("sheet_name")
-        cell_name = args.get("cell_name")
-        color = args.get("color")
-        return f'ExcelFontColor(v_Excel,“{sheet_name}”,“{cell_name}”,“{color}”,“是”,“0”,“0”,“false”)'
-    
-    def excel_get_font_color(self, args):
-        sheet_name = args.get("sheet_name")
-        cell_name = args.get("cell_name")
-        return f'v_Ret = ExcelGetFontColor(v_Excel,“{sheet_name}”,“{cell_name}”,“0”,“0”,“false”)'
-    
-    def excel_add_worksheet(self, args):
-        sheet_name = args.get("sheet_name") 
-        aim_sheet_name = args.get("aim_sheet_name")
-        return f'ExcelAddWorksheet(v_Excel,“{sheet_name}”,“{aim_sheet_name}”,“目标工作表之后”,“0”,“0”,“false”)'
-    
-    def excel_get_worksheet(self, args):
-        return f'v_Ret = ExcelGetWorkSheet(v_Excel,“是”,“0”,“0”,“false”)'
-    
-    def excel_get_all_worksheet(self, args):
-        return f'v_Array = ExcelGetAllWorkSheet(v_Excel,“0”,“0”,“false”)'
-    
-    def excel_rename_worksheet(self, args):
-        old_sheet_name = args.get("old_sheet_name")
-        new_sheet_name = args.get("new_sheet_name")
-        return f'ExcelRenameWorkSheet(v_Excel,“{old_sheet_name}”,“{new_sheet_name}”,“是”,“0”,“0”,“false”)'
-    
-    #file
-    def read_text_file(self, args):
-        file_path = args.get("file_path")
-        return f'v_Ret = ReadTextFile(“{file_path}”,“Content”,“0”,“0”,“false”)'
-    
-    def write_text_file(self, args):
-        file_path = args.get("file_path")
-        content = args.get("content")
-        return f'WriteTextFile(“{file_path}”,“{content}”,“Overwrite”,“0”,“0”,“false”)'
-    
-    def get_file_name(self, args):
-        file_path = args.get("file_path")
-        return f'v_Ret = GetFileName(“{file_path}”,“Yes”,“0”,“0”,“false”)'
-    
-    def get_file_extension(self, args):
-        file_path = args.get("file_path")
-        return f'v_Ret = GetFileExtension(“{file_path}”,“0”,“0”,“false”)'
-    
-    def get_parent_file(self, args):
-        file_path = args.get("file_path")
-        return f'v_Ret = GetParentFile(“{file_path}”,“0”,“0”,“false”)'
-    
-    def get_file_size(self, args):
-        file_path = args.get("file_path")
-        return f'v_Ret = GetFileSize(“{file_path}”,“0”,“0”,“false”)'
-    
-    def get_folder_size(self, args):
-        folder_path = args.get("folder_path")
-        return f'v_Ret = GetFolderSize(“{folder_path}”,“0”,“0”,“false”)'
-    
-    def move_file(self, args):
-        action_name = args.get("action_name")#复制文件/移动文件
-        source_file_path = args.get("source_file_path")
-        target_folder_path = args.get("target_folder_path")
-        return f'MoveFile(“{action_name}”,“{source_file_path}”,“{target_folder_path}”,“Yes”,“0”,“0”,“false”)'
-    
-    def move_folder(self, args):
-        action_name = args.get("action_name")#复制文件夹/移动文件夹
-        source_folder_path = args.get("source_folder_path")
-        target_folder_path = args.get("target_folder_path")
-        return f'MoveFolder(“{action_name}”,“{source_folder_path}”,“{target_folder_path}”,“No”,“0”,“0”,“false”)'
-    
-    def rename_file(self, args):
-        file_path = args.get("file_path")
-        new_file_name = args.get("new_file_name")
-        return f'RenameFile(“{file_path}”,“{new_file_name}”,“0”,“0”,“false”)'
-    
-    def delete_file(self, args):
-        file_path = args.get("file_path")
-        return f'DeleteFile(“{file_path}”,“0”,“0”,“false”)'
-    
-    def delete_folder(self, args):
-        folder_path = args.get("folder_path")
-        return f'DeleteFolder(“{folder_path}”,“0”,“0”,“false”)'
-    
-    def create_folder(self, args):
-        folder_path = args.get("folder_path")
-        return f'CreateFolder(“{folder_path}”,“0”,“0”,“false”)'
-    
-    def check_file_exists(self, args):
-        file_path = args.get("file_path")
-        return f'v_BRet = CheckFileExists(“{file_path}”,“0”,“0”,“false”)'
-    
-    def check_folder_exists(self, args):
-        folder_path = args.get("folder_path")
-        return f'v_BRet = CheckFolderExists(“{folder_path}”,“0”,“0”,“false”)'
-    
+    # def step(self, action):
+    #     action_name = action.get("action")
+    #     action_args = action.get("args")
+    #
+    #     # TODO: 一步一步交互时执行动作之后的 observation
+    #     # config_path = f"model/tbot/action_observation_config/{action_name}.json"
+    #     # with open(config_path, "r", encoding="UTF-8") as f:
+    #     #     config = json.load(f)
+    #
+    #     # try:
+    #     #     result = self.action_func_map[action_name](action_args)
+    #     # except Exception as e:
+    #     #     observation = generate_observation(config[str(type(e).__name__)])
+    #     # else:
+    #     #     observation = generate_observation(config["Success"], **result)
+    #
+    #     # result = self.action_func_map[action_name](action_args)
+    #     # return result
 
     def log(self, content):
         self.logger.log(content)

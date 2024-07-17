@@ -1,4 +1,9 @@
 import os
+import yaml
+
+prompt_path = "prompt/tbot.yaml"
+with open(prompt_path, "r", encoding="utf-8") as f:
+    prompt = yaml.safe_load(f)
 
 
 def get_system_prompt():
@@ -10,19 +15,18 @@ def get_system_prompt():
                 prompt = f"{prompt}\t{line}"
         return prompt
 
-    with open("prompt/tbot/system_prompt.txt", "r", encoding="UTF-8") as f:
-        system_prompt = f.read()
+    system_prompt = prompt["system_prompt"]
 
-    for root, dirs, files in os.walk("prompt/tbot/action"):
+    for root, dirs, files in os.walk("config/actions"):
         for file in files:
-            file_path = os.path.join(root, file)
-            system_prompt = add_action(system_prompt, file_path)
+            if file.endswith(".prompt"):
+                file_path = os.path.join(root, file)
+                system_prompt = add_action(system_prompt, file_path)
 
     return system_prompt
 
 
 def get_task_prompt(task):
-    with open("prompt/tbot/task_prompt.txt", "r", encoding="UTF-8") as f:
-        task_prompt = f.read()
-        task_prompt = task_prompt.replace("{task}", task)
+    task_prompt = prompt["task_prompt"]
+    task_prompt = task_prompt.replace("{task}", task)
     return task_prompt

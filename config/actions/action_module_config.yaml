@@ -1,0 +1,4 @@
+WordOpenDocument: config.actions.OfficeAutomation.Word.WordOpenDocument.WordOpenDocument
+WordCopySelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCopySelectTextContentCommnad.WordCopySelectTextContentCommnad
+WordPasteSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordPasteSelectTextContentCommnad.WordPasteSelectTextContentCommnad
+WordSelectAll: config.actions.OfficeAutomation.Word.WordSelectAll.WordSelectAll
