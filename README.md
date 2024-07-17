@@ -55,7 +55,7 @@ python -m model.main
 - `WordOpenDocument.yaml`: 该动作在 TBot Studio 中对应命令参数和返回值的配置。
 - `WordOpenDocument.py`: 该动作的实现逻辑，目前为生成对应 TBot 代码。
 
-**配置完三个文件之后，在 `action_module_config.yaml` 添加命令对应的包路径。**这样解析器才能找到对应的命令。
+**配置完三个文件之后，在 `action_module_config.yaml` 添加命令对应的包路径**。这样解析器才能找到对应的命令。
 
 每个文件具体如下所示：
 
