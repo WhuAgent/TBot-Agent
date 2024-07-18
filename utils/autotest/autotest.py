@@ -46,6 +46,7 @@ def open_tbot():
             image_path = os.path.join(root, file)
             if res := get_target_element(image_path):
                 click(res[2], top_left=res[0], shape=res[1])
+                return
 
 
 def input_code(code):
@@ -59,6 +60,7 @@ def input_code(code):
                 pyautogui.hotkey('ctrl', 'a')
                 pyautogui.press("backspace")
                 pynput.type(code)
+                return
 
 
 def run():
@@ -68,6 +70,7 @@ def run():
             image_path = os.path.join(root, file)
             if res := get_target_element(image_path):
                 click(res[2], top_left=res[0], shape=res[1])
+                return
 
 
 def run_test(code):
