@@ -1,4 +1,5 @@
 from tbot.agent import TBotAgent
+from utils.autotest.autotest import run_test
 
 
 def run_task(task):
@@ -7,6 +8,7 @@ def run_task(task):
     code = agent.generate_code()
     agent.log("生成代码:")
     agent.log(code)
+    run_test(code)
 
 
 if __name__ == '__main__':
