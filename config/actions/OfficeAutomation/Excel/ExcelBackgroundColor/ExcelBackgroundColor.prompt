@@ -1,0 +1,14 @@
+def ExcelBackgroundColor(excel_object, sheet_name, cell_name, color):
+    """
+    设置指定单元格的背景颜色
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        cell_name: 单元格名称
+        color: 颜色值
+    返回值：
+        无返回值
+    """
+     
+

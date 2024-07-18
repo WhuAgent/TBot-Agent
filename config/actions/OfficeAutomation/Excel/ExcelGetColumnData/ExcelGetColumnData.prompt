@@ -1,0 +1,13 @@
+def ExcelGetColumnData(excel_object, sheet_name, column_name):
+    """
+    获取指定工作表中指定列的数据
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        column_name: 列名称
+    返回值：
+        列数据
+    """
+     
+
