@@ -2,3 +2,16 @@ WordOpenDocument: config.actions.OfficeAutomation.Word.WordOpenDocument.WordOpen
 WordCopySelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCopySelectTextContentCommnad.WordCopySelectTextContentCommnad
 WordPasteSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordPasteSelectTextContentCommnad.WordPasteSelectTextContentCommnad
 WordSelectAll: config.actions.OfficeAutomation.Word.WordSelectAll.WordSelectAll
+CheckWindowNameExists: config.actions.OfficeAutomation.Window.CheckWindowNameExists.CheckWindowNameExists
+WaitForWindow: config.actions.OfficeAutomation.Window.WaitForWindow.WaitForWindow
+ActivateWindow: config.actions.OfficeAutomation.Window.ActivateWindow.ActivateWindow
+SetWindowState: config.actions.OfficeAutomation.Window.SetWindowState.SetWindowState
+GetWindowSize: config.actions.OfficeAutomation.Window.GetWindowSize.GetWindowSize
+ResizeWindow: config.actions.OfficeAutomation.Window.ResizeWindow.ResizeWindow
+MoveWindow: config.actions.OfficeAutomation.Window.MoveWindow.MoveWindow
+SetWindowTopMost: config.actions.OfficeAutomation.Window.SetWindowTopMost.SetWindowTopMost
+GetWindowNames: config.actions.OfficeAutomation.Window.GetWindowNames.GetWindowNames
+GetWindowClass: config.actions.OfficeAutomation.Window.GetWindowClass.GetWindowClass
+GetWindowPath: config.actions.OfficeAutomation.Window.GetWindowPath.GetWindowPath
+GetWindowPid: config.actions.OfficeAutomation.Window.GetWindowPid.GetWindowPid
+CloseWindow: config.actions.OfficeAutomation.Window.CloseWindow.CloseWindow
