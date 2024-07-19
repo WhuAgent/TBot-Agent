@@ -1,11 +1,11 @@
-def ExcelSetColumn(excel_object, sheet_name, column_name, content):
+def ExcelSetColumn(excel_object, sheet_name, cell_name, content):
     """
     设置指定工作表中指定列的内容
     ---
     参数：
         excel_object: Excel对象
         sheet_name: 工作表名称
-        column_name: 列名称
+        cell_name: 单元格名称,代表列的位置
         content: 要设置的内容
     返回值：
         无返回值

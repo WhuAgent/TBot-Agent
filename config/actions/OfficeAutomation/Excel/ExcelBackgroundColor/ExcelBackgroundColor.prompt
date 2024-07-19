@@ -6,7 +6,7 @@ def ExcelBackgroundColor(excel_object, sheet_name, cell_name, color):
         excel_object: Excel对象
         sheet_name: 工作表名称
         cell_name: 单元格名称
-        color: 颜色值
+        color: RGB数组格式的颜色值，如[255, 0, 0]表示红色
     返回值：
         无返回值
     """

@@ -13,4 +13,5 @@ def decorate_args(args):
 def ExcelGetAllWorkSheet(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    return f"ExcelGetAllWorkSheet({args_str})"
+    rets_str = function_rets2str(config, args)
+    return f"{rets_str}= ExcelGetAllWorkSheet({args_str})"
