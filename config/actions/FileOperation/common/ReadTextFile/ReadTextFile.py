@@ -7,12 +7,15 @@ config_path = "config/actions/FileOperation/common/ReadTextFile/ReadTextFile.yam
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
+
 def decorate_args(args):
     file_path = convert2double_slash_path(args.get("file_path"))
     args["file_path"] = f'\"{file_path}\"'
     return args
 
+
 def ReadTextFile(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    return f"ReadTextFile({args_str})"
+    rets_str = function_rets2str(config, args)
+    return f"{rets_str}= ReadTextFile({args_str})"

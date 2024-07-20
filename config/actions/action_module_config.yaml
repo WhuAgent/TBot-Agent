@@ -18,6 +18,8 @@ ExcelMergeCell: config.actions.OfficeAutomation.Excel.ExcelMergeCell.ExcelMergeC
 ExcelRenameWorkSheet: config.actions.OfficeAutomation.Excel.ExcelRenameWorkSheet.ExcelRenameWorkSheet
 ExcelRowHeight: config.actions.OfficeAutomation.Excel.ExcelRowHeight.ExcelRowHeight
 ExcelSetColumn: config.actions.OfficeAutomation.Excel.ExcelSetColumn.ExcelSetColumn
+CheckFileExists: config.actions.FileOperation.common.CheckFileExists.CheckFileExists
+CheckFolderExists: config.actions.FileOperation.common.CheckFolderExists.CheckFolderExists
 CreateFolder: config.actions.FileOperation.common.CreateFolder.CreateFolder
 DeleteFile: config.actions.FileOperation.common.DeleteFile.DeleteFile
 DeleteFolder: config.actions.FileOperation.common.DeleteFolder.DeleteFolder

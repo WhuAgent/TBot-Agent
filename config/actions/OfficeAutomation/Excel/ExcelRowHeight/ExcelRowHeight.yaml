@@ -1,7 +1,7 @@
 args:
   excel_object: v_Excel
   sheet_name: ""
-  row_name: ""
+  cell_name: ""
   height: ""
   is_save: 是
   pre_delay: 0

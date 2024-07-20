@@ -16,4 +16,4 @@ def GetFileExtension(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
     rets_str = function_rets2str(config, args)
-    return f"“{rets_str}= GetFileExtension({args_str})"
+    return f"{rets_str}= GetFileExtension({args_str})"

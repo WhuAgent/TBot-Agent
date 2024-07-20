@@ -7,10 +7,12 @@ config_path = "config/actions/FileOperation/common/CreateFolder/CreateFolder.yam
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
+
 def decorate_args(args):
-    file_path = convert2double_slash_path(args.get("file_path"))
-    args["file_path"] = f'\"{file_path}\"'
+    folder_path = convert2double_slash_path(args.get("folder_path"))
+    args["folder_path"] = f'\"{folder_path}\"'
     return args
+
 
 def CreateFolder(args):
     args = decorate_args(args)
