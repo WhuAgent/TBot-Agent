@@ -1,0 +1,9 @@
+def run_script(script):
+    """
+    执行PowerShell脚本文件
+    ---
+    参数：
+        script: 要执行命令行
+    返回值：
+        PowerShell执行过程中的控制台输出文本。
+    """
