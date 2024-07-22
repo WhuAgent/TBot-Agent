@@ -1,0 +1,7 @@
+args:
+  text: ""
+  write_interval: 20
+  operation_type: 3
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False

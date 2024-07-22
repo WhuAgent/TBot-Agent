@@ -1,0 +1,14 @@
+def SendTargetKeys(self, area, name, text, write_interval, clear, operation_type):
+    """
+    在指定的界面元素中输入文本，若未指定界面元素则使用SendKeys函数执行输入
+    ---
+    参数：
+        area: 界面上的区域
+        name: 指定元素名字
+        text: 要在指定的界面元素中写入的文本，默认为999
+        write_interval: 两次输入之间的间隔，单位为ms，默认为20ms
+        clear: 写入文本之前是否清空输入框，默认为"是"
+        operation_type: 后台的操作类型，1表示系统操作，2表示后台操作，3表示模型操作，默认为2
+    返回值：
+        无返回值
+    """
