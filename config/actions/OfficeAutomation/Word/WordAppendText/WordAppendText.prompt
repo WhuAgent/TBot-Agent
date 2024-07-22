@@ -1,0 +1,15 @@
+def WordAppendText(document, content, font, size, bold, italic, underline):
+    """
+    在文档中写入指定了样式的文字
+    ---
+    参数：
+        document: 要操作的文档对象
+        content: 写入的文字内容
+        font: 字体
+        size: 字号大小
+        bold: 是否为粗体字，英文，只有"Yes"和"No"2种值，默认值为"No"
+        italic: 是否为斜体字，英文，只有"Yes"和"No"2种值，默认值为"No"
+        underline: 是否有下划线，英文，只有"Yes"和"No"2种值，有下划线就是"Yes"，没有就是"No"，默认为"No"
+    返回值：
+        无返回值
+    """
