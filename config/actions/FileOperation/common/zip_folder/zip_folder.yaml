@@ -1,5 +1,5 @@
 args:
-  file_path: "C:\\Users\\86188\\Desktop"
+  folder_path: "C:\\Users\\86188\\Desktop"
   target_path: "C:\\Users\\86188\\Desktop"
   zip_cipher: ""
   zip_name: "test"

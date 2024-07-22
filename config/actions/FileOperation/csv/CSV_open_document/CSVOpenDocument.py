@@ -15,7 +15,7 @@ def decorate_args(args):
     return args
 
 
-def CSVOpenDocument(args):
+def CSV_open_document(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
     rets_str = function_rets2str(config, args)

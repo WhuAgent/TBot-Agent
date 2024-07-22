@@ -1,4 +1,4 @@
-def get_files_list(file_path):
+def get_files_list(folder_path):
     """
     获取文件夹路径对应的文件夹内的文件列表，以数组的形式返回
     ---
