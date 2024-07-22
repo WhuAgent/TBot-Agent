@@ -1,0 +1,12 @@
+def WaitForImage(self,picture_id,picture_name,picture_path,mode):
+    """
+    等待图像出现或者消失
+    ---
+    参数:
+        picture_id: 图片编号
+        picture_name: 图片名称
+        picture_path: 待查找的图片路径
+        mode: 等待模式，"hide"或者"show"，默认值为"show"
+    返回值:
+        成功返回true，失败返回false
+    """

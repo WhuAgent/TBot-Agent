@@ -1,0 +1,13 @@
+def GetElementByText(self,text,rule,target,target_name,target_pic):
+    """
+    查找文本所在位置的界面元素
+    ---
+    参数:
+        text：文本
+        rule: 查找规则，可选项有“包含文本”、“正则表达式匹配”
+        target: 查找目标
+        target_name: 目标名称
+        target_pic: unknown
+    返回值:
+        文本所在的界面元素
+    """

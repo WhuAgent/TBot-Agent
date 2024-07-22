@@ -1,0 +1,13 @@
+def CheckTextExists(self,text,rule,target,target_name,target_pic):
+    """
+    判断文本是否存在
+    ---
+    参数:
+        text：文本
+        rule: 查找规则，可选项有“包含文本”、“正则表达式匹配”
+        target: 查找目标
+        target_name: 目标名称
+        target_pic: unknown
+    返回值:
+        文本存在返回 true，否则返回 false
+    """
