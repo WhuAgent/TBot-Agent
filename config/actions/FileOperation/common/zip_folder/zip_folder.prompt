@@ -5,7 +5,7 @@ def zip_folder(folder_path,target_path,zip_name):
     参数：
         folder_path: 需要压缩的文件夹路径
         target_path: 文件夹压缩后保存的指定位置
-        zip_name: 压缩后的文件名
+        zip_name: 压缩后的文件名,不包含后缀
     返回值：
         压缩后的文件夹路径
     """
