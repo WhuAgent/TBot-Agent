@@ -1,0 +1,11 @@
+def ExcelSelectData(self, table, area, data):
+    """
+    在指定工作表的指定区域中查找数据,返回命中查找的单元格
+    ---
+    参数：
+        table: 指定工作表
+        area: 指定区域
+        data: 查找的数据
+    返回值：
+        place: 查找到的单元格
+    """
