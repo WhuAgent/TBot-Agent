@@ -12,6 +12,8 @@ with open(config_path, "r", encoding="UTF-8") as f:
 
 def decorate_args(args):
     # 在这里写下每个命令参数的特殊处理
+    if args.get("url"):
+        args["url"] = f'\"{args["url"]}\"'
     return args
 
 

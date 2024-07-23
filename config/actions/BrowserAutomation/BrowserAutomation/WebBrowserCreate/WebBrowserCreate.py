@@ -10,7 +10,8 @@ with open(config_path, "r", encoding="UTF-8") as f:
 
 
 def decorate_args(args):
-    # 在这里写下每个命令参数的特殊处理
+    if args.get("base_url"):
+        args["base_url"] = f'\"{args["base_url"]}\"'
     return args
 
 
@@ -18,4 +19,4 @@ def WebBrowserCreate(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
     rets_str = function_rets2str(config, args)
-    return f"{rets_str} = WordOpenDocument({args_str})"
+    return f"{rets_str} = WebBrowserCreate({args_str})"

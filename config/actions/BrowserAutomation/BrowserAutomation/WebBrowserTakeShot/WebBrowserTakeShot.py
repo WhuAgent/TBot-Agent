@@ -29,5 +29,5 @@ def decorate_args(args):
 def WebBrowserTakeShot(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    rets_str = function_rets2str(config, args)
+    # rets_str = function_rets2str(config, args)
     return f"WebBrowserTakeShot({args_str})"
