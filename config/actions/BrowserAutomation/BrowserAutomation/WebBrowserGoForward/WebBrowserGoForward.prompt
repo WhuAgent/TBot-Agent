@@ -1,0 +1,4 @@
+def WebBrowserGoForward(self):
+    """
+    Go forward in the web browser history.
+    """
