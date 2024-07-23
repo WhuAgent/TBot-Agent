@@ -1,0 +1,12 @@
+def WaitForElement(element_name, handle_obj, duration, action):
+    """
+    在有限时间内，根据元素句柄等待元素执行动作。
+    ---
+    参数：
+        element_name: 元素主题
+        duration: 所限制的时间，单位ms
+        action: 执行的动作。枚举值，show表示等待元素显示、hide表示等待元素消失
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        bool_obj: true表示出现对应的动作，false表示未出现对应的操作
+    """
