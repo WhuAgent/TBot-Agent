@@ -1,9 +1,0 @@
-def detect_file_exist(file_path):
-    """
-    判断路径对应的文件是否存在
-    ---
-    参数：
-        file_path: 指定的文件路径
-    返回值：
-        返回布尔值，True表示存在，False表示不存在。
-    """
