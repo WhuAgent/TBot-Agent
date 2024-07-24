@@ -1,0 +1,12 @@
+def ExcelCopyWorkSheet(self, sheet_name, new_sheet_name, is_save_needed):
+    """
+    创建一个工作表，并将指定工作表数据复制到所创建的工作表中。
+    ---
+    参数:
+        sheet_name: 被复制的工作表名，如果使用字符串，则表示指定工作表的名字；使用数字，则表示指定工作表的顺序（从0开始）
+        new_sheet_name: 新创建的工作表名
+        is_save_needed: 操作完成是否保存，需要则为"true"，不需要则为"false"
+
+    返回值:
+        无返回值
+    """

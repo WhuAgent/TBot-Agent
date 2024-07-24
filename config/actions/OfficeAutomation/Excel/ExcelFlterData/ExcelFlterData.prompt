@@ -1,0 +1,23 @@
+def ExcelFlterData(self, sheet_name, row_name, column_index, flter_row_name_list, 
+                    converted_type_column_name_list, grouped_row_name_list, sorted_row_name_list, 
+                    function_executed_on_column_dict, is_ascend, start_column_index, end_column_index, is_to_list):
+    """
+    筛选 Excel 中的指定范围的数据并输出
+    ---
+    参数:
+        sheet_name: 需要激活的工作表名称，如果使用字符串，则表示指定工作表的名字；使用数字，则表示指定工作表的顺序（从0开始）
+        row_name: 被筛选的主要列名及列索引
+        column_index: 被筛选的行索引，若传入-1则选中所有行
+        flter_row_name_list: 要筛选的列名称列表
+        converted_type_column_name_list: 要转换类型的列名称列表
+        grouped_row_name_list: 分组的列名列表
+        sorted_row_name_list: 排序的列名列表
+        function_executed_on_column_dict: 对指定列执行指定函数的字典
+        is_ascend: 排序为升序还是降序，true是升序，false是降序
+        start_column_index：数据行开始索引（从0开始编号，-1为选中全部数据行）
+        end_column_index: 数据行结束索引（从0开始编号，-1为选中全部数据行）
+        is_to_list: 结果是否由输出字典转化为列表
+
+    返回值:
+        无返回值
+    """

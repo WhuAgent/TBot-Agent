@@ -1,0 +1,11 @@
+def ExcelRunMacro(self, macro, arguments):
+    """
+    激活指定的工作表。
+    ---
+    参数:
+        macro: 所需要执行的宏的名称
+        arguments: 传递给宏的参数，例如调用sum(1,2)则传递[1,2]，无参数则填写[]
+
+    返回值:
+        无返回值
+    """
