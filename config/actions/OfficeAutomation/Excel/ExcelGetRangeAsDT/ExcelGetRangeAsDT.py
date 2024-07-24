@@ -3,7 +3,7 @@ import yaml
 from utils.function import function_args2str, function_rets2str
 
 config_path = (
-    "config/actions/OfficeAutomation/Window/ExcelGetRangeAsDT/ExcelGetRangeAsDT.yaml"
+    "config/actions/OfficeAutomation/Excel/ExcelGetRangeAsDT/ExcelGetRangeAsDT.yaml"
 )
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)

@@ -1,7 +1,6 @@
 from tbot.agent import TBotAgent
 from utils.autotest.autotest import run_test
 
-
 def run_task(task):
     agent = TBotAgent(task)
     _ = agent.generate_plan()
@@ -13,5 +12,14 @@ def run_task(task):
 
 if __name__ == '__main__':
     # code, res = capture("winword")
-    run_task('请帮我在激活记事本中激活1.txt这个窗口，判断它是否存在，最大化这个窗口，查看这个时候窗口的大小，将其改到宽1000，高800.然后移动这个窗口到x坐标为0，y坐标为10的位置，将他置顶，获取窗口名称、类名、路径、进程，最后关闭这个窗口')
+    run_task(
+        '请帮我打开excel表格"C:\\Users\\Martin\\Downloads\\thingo-T-BOT\\Tbot-Agent\\test\\test.xlsx"，'
+        '随后激活名称为"价格"的工作表。'
+        '在"价格"工作表中执行宏"DeleteEmptyRows"。'
+        '接下来，创建一个名称为"价格副本"的工作表，并将该原先"价格"工作表的内容复制到"价格副本"的工作表中。'
+        '复制完成以后，删除原先的"价格”工作表。'
+        '激活名称为"价格副本"的工作表，读取"A1"到"D5"的全部内容到v_DataTable中，首行是数据表的列名，'
+        '将数据表v_DataTable写入"价格副本"工作表中，写入的起始地址为"A6"。'
+        # '筛选当前"价格副本"工作表中的列名为"合计"的数据v_Ret，并将数据表v_Ret写入"价格副本"工作表中，写入的起始地址为"E2"'
+    )
     # run_task("请帮我打开文档 'C:\\Users\\lornd\\Desktop\\res.docx'，并向其中写入内容 'hello'，最后关闭文件")

@@ -3,6 +3,7 @@ def ExcelGetRangeAsDT(self, sheet_name, start_cell, end_cell, is_header_needed):
     读取数据到数据表。
     ---
     参数:
+        v_Excel: 需要读取工作表所在excel的对象，默认为v_Excel
         sheet_name: 需要读取的工作表名称，如果使用字符串，则表示指定工作表的名字；使用数字，则表示指定工作表的顺序（从0开始）
         start_cell: 开始单元格名称
         end_cell: 结束单元格名称，如果传入空字符串，则查询所有数据表

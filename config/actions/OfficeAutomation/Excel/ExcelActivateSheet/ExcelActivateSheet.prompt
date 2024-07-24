@@ -1,8 +1,9 @@
-def ExcelActivateSheet(self, sheet_name):
+def ExcelActivateSheet(self, sheet_name, v_Excel):
     """
     激活指定的工作表/设置指定的工作表/打开指定的工作表
     ---
     参数:
+        v_Excel: 需要激活工作表所在excel的对象，默认为v_Excel
         sheet_name: 需要激活的工作表名称，如果使用字符串，则表示指定工作表的名字；使用数字，则表示指定工作表的顺序（从0开始）
 
     返回值:

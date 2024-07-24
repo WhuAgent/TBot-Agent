@@ -4,4 +4,5 @@ ExcelDeleteWorksheet: config.actions.OfficeAutomation.Excel.ExcelDeleteWorksheet
 ExcelFlterData: config.actions.OfficeAutomation.Excel.ExcelFlterData.ExcelFlterData
 ExcelGetRangeAsDT: config.actions.OfficeAutomation.Excel.ExcelGetRangeAsDT.ExcelGetRangeAsDT
 ExcelRunMacro: config.actions.OfficeAutomation.Excel.ExcelRunMacro.ExcelRunMacro
+ExcelWriteRange: config.actions.OfficeAutomation.Excel.ExcelWriteRange.ExcelWriteRange
 ExcelOpenWorkbook: config.actions.OfficeAutomation.Excel.ExcelOpenWorkbook.ExcelOpenWorkbook

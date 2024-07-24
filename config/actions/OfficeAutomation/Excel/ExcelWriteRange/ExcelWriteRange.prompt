@@ -1,11 +1,12 @@
-def ExcelWriteRange(self, sheet_name, data_table, end_cell, is_header_needed, output_data_table):
+def ExcelWriteRange(self, sheet_name, data_table, start_cell, is_header_needed, output_data_table):
     """
     根据数据表写入数据。
     ---
     参数:
+        v_Excel: 需要写入工作表所在excel的对象，默认为v_Excel
         sheet_name: 工作表名称，如果使用字符串，则表示指定工作表的名字；使用数字，则表示指定工作表的顺序（从0开始）
         data_table: 数据表对象
-        end_cell: 单元格结束地址，如果不填则查询所有数据表
+        start_cell：要写入数据的单元格起始地址，起始单元格
         is_header_needed: 是否将第一行作为数据表列名
         output_data_table: 输出到的数据表对象
     返回值:
