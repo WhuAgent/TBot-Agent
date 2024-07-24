@@ -2,3 +2,14 @@ WordOpenDocument: config.actions.OfficeAutomation.Word.WordOpenDocument.WordOpen
 WordCopySelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCopySelectTextContentCommnad.WordCopySelectTextContentCommnad
 WordPasteSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordPasteSelectTextContentCommnad.WordPasteSelectTextContentCommnad
 WordSelectAll: config.actions.OfficeAutomation.Word.WordSelectAll.WordSelectAll
+StartProcess: config.actions.SystemOperation.Application.StartProcess.StartProcess
+StopProgram: config.actions.SystemOperation.Application.StopProgram.StopProgram
+MessageBox: config.actions.SystemOperation.Dialog.MessageBox.MessageBox
+FileDialog: config.actions.SystemOperation.Dialog.FileDialog.FileDialog
+FolderDialog: config.actions.SystemOperation.Dialog.FolderDialog.FolderDialog
+InputDialog: config.actions.SystemOperation.Dialog.InputDialog.InputDialog
+ClipboardSetText: config.actions.SystemOperation.Clipboard.ClipboardSetText.ClipboardSetText
+Clipboard: config.actions.SystemOperation.Clipboard.Clipboard.Clipboard
+PTSDrawText: config.actions.SystemOperation.PrintToScreen.PTSDrawText.PTSDrawText
+PTSCleanText: config.actions.SystemOperation.PrintToScreen.PTSCleanText.PTSCleanText
+LockWindows: config.actions.SystemOperation.LockScreen.LockWindows.LockWindows

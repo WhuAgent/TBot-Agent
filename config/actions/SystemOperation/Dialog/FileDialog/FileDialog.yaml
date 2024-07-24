@@ -1,0 +1,11 @@
+args:
+  style: "选择文件对话框"
+  file_type: "All files (*.*)|*.*"
+  unknown_args1: "1"
+  origin_path: ""
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  file_path: path
