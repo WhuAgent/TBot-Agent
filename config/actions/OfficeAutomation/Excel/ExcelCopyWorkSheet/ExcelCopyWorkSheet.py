@@ -2,7 +2,9 @@ import yaml
 
 from utils.function import function_args2str, function_rets2str
 
-config_path = "config/actions/OfficeAutomation/Word/WordPasteSelectTextContentCommnad/WordPasteSelectTextContentCommnad.yaml"
+config_path = (
+    "config/actions/OfficeAutomation/Excel/ExcelCopyWorkSheet/ExcelCopyWorkSheet.yaml"
+)
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,7 +14,7 @@ def decorate_args(args):
     return args
 
 
-def WordPasteSelectTextContentCommnad(args):
+def ExcelCopyWorkSheet(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    return f"WordPasteSelectTextContentCommnad({args_str})"
+    return f"ExcelCopyWorkSheet({args_str})"
