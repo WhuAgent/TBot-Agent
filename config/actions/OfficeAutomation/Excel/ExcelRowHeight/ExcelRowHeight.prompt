@@ -1,0 +1,14 @@
+def ExcelRowHeight(excel_object, sheet_name, cell_name, height):
+    """
+    设置指定工作表中指定行的高度
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        cell_name: 单元格名称, 形如"A1",不能只是”1“,用来代表所在行
+        height: 行高度
+    返回值：
+        无返回值
+    """
+     
+

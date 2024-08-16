@@ -1,0 +1,10 @@
+def CreateFolder(folder_path):
+    """
+    创建指定路径的文件夹
+    ---
+    参数：
+        folder_path: 文件夹路径
+    返回值：
+        无返回值
+    """
+

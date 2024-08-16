@@ -1,0 +1,12 @@
+def ExcelGetAllWorkSheet(excel_object):
+    """
+    获取所有工作表的名称
+    ---
+    参数：
+        excel_object: Excel对象
+        无
+    返回值：
+        names_list: 所有工作表的名称列表
+    """
+     
+

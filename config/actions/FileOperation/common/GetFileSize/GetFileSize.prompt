@@ -1,0 +1,10 @@
+def GetFileSize(file_path):
+    """
+    获取指定路径文件的大小
+    ---
+    参数：
+        file_path: 文件路径
+    返回值：
+        file_size: 文件大小
+    """
+
