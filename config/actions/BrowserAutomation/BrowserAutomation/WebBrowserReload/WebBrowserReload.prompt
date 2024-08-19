@@ -1,0 +1,4 @@
+def WebBrowserReload(self):
+    """
+    Reload the current page.
+    """

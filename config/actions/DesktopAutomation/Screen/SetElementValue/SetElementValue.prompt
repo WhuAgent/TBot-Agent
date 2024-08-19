@@ -1,0 +1,11 @@
+def SetElementValue(element_name, handle_obj, text):
+    """
+    根据元素句柄设置元素的文本内容。
+    ---
+    参数：
+        element_name: 元素主题
+        text: 文本内容。
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        无返回值
+    """

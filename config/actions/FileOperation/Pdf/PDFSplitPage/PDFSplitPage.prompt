@@ -1,0 +1,10 @@
+def PDFSplitPage(self,file_path,save_path):
+    """
+    拆分pdf
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+        save_path：拆分后pdf保存的位置，默认值为"C:\\Users\\19101\\Desktop\\test_pdf\\spilt.pdf"
+    返回值：
+        无返回值
+    """

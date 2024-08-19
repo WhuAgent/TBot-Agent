@@ -1,0 +1,7 @@
+def WebBrowserActiveTab(self, args):
+    """
+    通过网页url来切换到其对应的浏览器标签页
+    ---
+    args:
+        url: 要匹配的url
+    """

@@ -1,0 +1,10 @@
+def GetPDFMerge(self,file_path,merge_path):
+    """
+    合并pdf
+    ---
+    参数：
+        file_path: 待合并的多个pdf路径,两个文件路径之间以“;”分隔
+        merge_path：合并后pdf保存的位置，默认值为"C:\\Users\\19101\\Desktop\\test_pdf\\merge.pdf"
+    返回值：
+        无返回值
+    """

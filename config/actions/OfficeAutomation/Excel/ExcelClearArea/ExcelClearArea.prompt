@@ -1,0 +1,10 @@
+def ExcelClearArea(self, table, area):
+    """
+    清除指定工作表中的指定区域的值
+    ---
+    参数：
+        table: 指定工作表
+        area: 指定区域
+    返回值：
+        无返回值
+    """

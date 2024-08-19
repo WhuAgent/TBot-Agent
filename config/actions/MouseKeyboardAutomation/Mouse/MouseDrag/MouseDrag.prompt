@@ -1,0 +1,12 @@
+def MouseDrag(self, start_point, end_point, click_event, auxiliary_key):
+    """
+    模拟鼠标鼠标从起始点坐标移到结束点坐标
+    ---
+    参数：
+        start_point: 起始点的坐标，格式为"0,0"
+        end_point: 结束点的坐标，格式为"0,0"
+        click_event: 点击事件，包含：左键，中键，右键，默认为左键
+        auxiliary_key: 辅助按键，可以同时选择多个辅助按键，例如["ctrl","shift"]，包含：ctrl，shift，alt，win，默认为[]
+    返回值：
+        无返回值
+    """

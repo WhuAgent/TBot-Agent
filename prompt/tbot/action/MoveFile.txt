@@ -1,0 +1,12 @@
+def MoveFile(self, action_name, source_file_path, target_folder_path):
+    """
+    复制或移动指定路径的文件
+    ---
+    参数：
+        action_name: 操作名称（复制文件/移动文件）
+        source_file_path: 源文件路径
+        target_folder_path: 目标文件夹路径
+    返回值：
+        无返回值
+    """
+

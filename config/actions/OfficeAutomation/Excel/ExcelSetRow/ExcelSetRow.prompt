@@ -1,0 +1,11 @@
+def ExcelSetRow(self, table, place, data):
+    """
+    从指定工作表中的指定单元格开始写入一行数组
+    ---
+    参数：
+        table: 指定工作表
+        place: 指定单元格
+        data: 被写入的数组
+    返回值：
+        无返回值
+    """

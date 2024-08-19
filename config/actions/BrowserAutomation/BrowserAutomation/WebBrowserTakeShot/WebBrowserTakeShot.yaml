@@ -1,0 +1,7 @@
+args:
+  browser_object: v_Browser
+  file_path: ""
+  scope: [0,0,0,0]
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False

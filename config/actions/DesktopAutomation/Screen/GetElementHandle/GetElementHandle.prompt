@@ -1,0 +1,9 @@
+def GetElementHandle(element_name):
+    """
+    获取元素的唯一句柄，用来指定元素。根据元素名找到指定元素，并返回对应的句柄。
+    ---
+    参数：
+        element_name: 指定元素名字
+    返回值：
+        handle_obj: 句柄类型变量，用来指定元素
+    """

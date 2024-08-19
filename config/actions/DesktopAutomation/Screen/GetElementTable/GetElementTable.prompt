@@ -1,0 +1,11 @@
+def GetElementTable(element_name, handle_obj, status):
+    """
+    根据元素句柄提取元素中数据表。
+    ---
+    参数：
+        element_name: 元素主题
+        status: 表示是否包含标题。枚举值，是表示数据表中包含标题，否表示数据表中不包含标题，默认为是。
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        table: 数据表。
+    """

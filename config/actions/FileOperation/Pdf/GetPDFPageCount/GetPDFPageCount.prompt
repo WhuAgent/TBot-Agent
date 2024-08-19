@@ -1,0 +1,9 @@
+def GetPDFPageCount(self, file_path):
+    """
+    获取指定PDF文件的总页数
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+    返回值：
+        指定pdf文件的总页数
+    """

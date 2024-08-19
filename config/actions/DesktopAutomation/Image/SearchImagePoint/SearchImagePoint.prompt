@@ -1,0 +1,11 @@
+def SearchImagePoint(self,picture_id,picture_name,picture_path):
+    """
+    在指定范围内查找图像所在位置
+    ---
+    参数:
+        picture_id: 图片编号
+        picture_name: 图片名称
+        picture_path: 待查找的图片路径
+    返回值:
+        返回图片所在位置
+    """
