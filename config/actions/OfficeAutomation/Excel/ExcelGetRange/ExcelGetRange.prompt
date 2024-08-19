@@ -1,0 +1,10 @@
+def ExcelGetRange(self, table, area):
+    """
+    读取指定工作表中指定区域的值,返回二维数组
+    ---
+    参数：
+        table: 指定工作表
+        area: 指定区域
+    返回值：
+        v_Array: 读取到的二维数组
+    """

@@ -1,0 +1,11 @@
+def ExcelInsertRow(self, data, table, place):
+    """
+    将数组插入到指定工作表中的指定单元格对应的行之上
+    ---
+    参数：
+        data: 插入的数组
+        table: 指定工作表
+        place: 指定单元格
+    返回值：
+        无返回值
+    """

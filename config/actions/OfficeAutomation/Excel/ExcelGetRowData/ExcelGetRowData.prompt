@@ -1,0 +1,10 @@
+def ExcelGetRowData(self, table, place):
+    """
+    读取指定工作表中的指定单元格之后的行,返回数组
+    ---
+    参数：
+        table: 指定工作表
+        place: 指定单元格
+    返回值：
+        v_Array: 返回的数组
+    """
