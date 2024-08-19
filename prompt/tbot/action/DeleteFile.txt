@@ -1,0 +1,10 @@
+def DeleteFile(self, file_path):
+    """
+    删除指定路径的文件
+    ---
+    参数：
+        file_path: 文件路径
+    返回值：
+        无返回值
+    """
+

@@ -1,0 +1,13 @@
+def ExcelDeleteColumn(excel_object, sheet_name, column_name):
+    """
+    删除指定工作表中的指定列
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        colum_name: 列名，形如'A', 用来确定列的位置
+    返回值：
+        无返回值
+    """
+     
+

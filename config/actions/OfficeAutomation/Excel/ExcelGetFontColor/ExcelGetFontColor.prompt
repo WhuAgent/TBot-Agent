@@ -1,0 +1,13 @@
+def ExcelGetFontColor(excel_object, sheet_name, cell_name):
+    """
+    获取指定工作表中指定单元格的字体颜色
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        cell_name: 单元格名称
+    返回值：
+        font_color: 字体颜色(RGB数组格式)
+    """
+     
+
