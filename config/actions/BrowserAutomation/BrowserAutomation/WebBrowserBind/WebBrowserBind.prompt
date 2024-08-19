@@ -1,0 +1,9 @@
+def WebBrowserBind(self, args):
+    """
+    绑定一个已经打开的浏览器到对象v_Browser中
+    ---
+    参数:
+        browser_type: 要绑定浏览器类型
+    返回值:
+        无
+    """
