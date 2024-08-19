@@ -1,0 +1,7 @@
+def WebBrowserRunJs(self, args):
+    """
+    Run JavaScript in the browser.结果保存到v_Ret
+    ---
+    args:
+        js_code: JavaScript code to run. 如果代码中用到变量使用{}包裹，如 function(){ return '{age}' }
+    """

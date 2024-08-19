@@ -1,0 +1,8 @@
+args:
+  element_name: ""
+  status: True
+  handle_obj: ""
+  element_picture: ""
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
