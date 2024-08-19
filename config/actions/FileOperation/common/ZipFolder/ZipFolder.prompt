@@ -1,0 +1,11 @@
+def ZipFolder(folder_path,target_path,zip_name):
+    """
+    将指定的文件夹压缩，保存到指定文件夹中，如果存在同名文件则直接覆盖
+    ---
+    参数：
+        folder_path: 需要压缩的文件夹路径
+        target_path: 文件夹压缩后保存的指定位置
+        zip_name: 压缩后的文件名,不包含后缀
+    返回值：
+        zip_path: 压缩后的文件夹路径。注意，需要指定一个变量名。
+    """

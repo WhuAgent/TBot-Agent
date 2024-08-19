@@ -1,0 +1,7 @@
+def WebBrowserNewTab(self, args):
+    """
+    在目标浏览器中打开一个新的网页
+    ---
+    参数:
+        url: 目标网页的URL
+    """

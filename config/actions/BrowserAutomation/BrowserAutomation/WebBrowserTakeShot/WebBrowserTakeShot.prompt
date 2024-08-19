@@ -1,0 +1,13 @@
+def WebBrowserTakeShot(self, args):
+    """
+    Take a screenshot of the current web page.
+    ---
+    args:
+        file_path: The path to save the screenshot.
+        x: 横坐标偏移量 小于 0 向左偏移，大于 0 向右偏移
+        y: 纵坐标偏移量 小于 0 向上偏移，大于 0 向下偏移
+        width: 截图宽度
+        height: 截图高度
+    return:
+        无
+    """

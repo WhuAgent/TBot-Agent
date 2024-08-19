@@ -1,0 +1,10 @@
+def GetChildElement(element_name, handle_obj):
+    """
+    根据元素句柄获取所有的子元素的句柄。只有明确提及子元素才能调用此方法。
+    ---
+    参数：
+        element_name: 元素主题
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        handle_list: 数组类型值，包含所有子元素的句柄
+    """
