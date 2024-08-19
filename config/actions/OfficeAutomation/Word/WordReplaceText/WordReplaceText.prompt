@@ -1,0 +1,11 @@
+def WordReplaceText(document, A, B):
+    """
+    将文档中的文字A替换为文字B
+    ---
+    参数:
+        document: 要操作的文档对象
+        A: 需要被替换的文字
+        B: 替换成的文字
+    返回值:
+        无返回值
+    """

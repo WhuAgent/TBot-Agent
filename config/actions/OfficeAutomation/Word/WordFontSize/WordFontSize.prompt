@@ -1,0 +1,10 @@
+def WordFontSize(document, size):
+    """
+    设置文档选中区域文字的字号大小
+    ---
+    参数:
+        document: 要操作的文档对象
+        size: 设置成的字号大小
+    返回值:
+        无返回值
+    """

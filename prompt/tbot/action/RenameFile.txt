@@ -1,0 +1,11 @@
+def RenameFile(self, file_path, new_file_name):
+    """
+    重命名指定路径的文件
+    ---
+    参数：
+        file_path: 文件路径
+        new_file_name: 新的文件名
+    返回值：
+        无返回值
+    """
+

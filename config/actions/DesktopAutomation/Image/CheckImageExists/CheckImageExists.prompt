@@ -1,0 +1,11 @@
+def CheckImageExists(self,picture_id,picture_name,picture_path):
+    """
+    判断图像是否存在
+    ---
+    参数:
+        picture_id: 图片编号
+        picture_name: 图片名称
+        picture_path: 待查找的图片路径
+    返回值:
+        成功返回true，失败返回false
+    """

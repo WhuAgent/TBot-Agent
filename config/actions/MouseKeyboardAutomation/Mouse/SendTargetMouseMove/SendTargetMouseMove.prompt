@@ -1,0 +1,10 @@
+def SendTargetMouseMove(self, area, name)
+    """
+    将鼠标光标移动到指定的界面元素上
+    ---
+    参数：
+        area: 界面上的区域
+        name: 指定元素名字
+    返回值：
+        无返回值
+    """

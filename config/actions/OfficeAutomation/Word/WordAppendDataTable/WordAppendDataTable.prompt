@@ -1,0 +1,10 @@
+def WordAppendDataTable(document, name):
+    """
+    添加一个DataTable
+    ---
+    参数：
+        document: 要操作的文档对象
+        name: DataTable的名字，默认为"v_DataTable"
+    返回值：
+        无返回值
+    """

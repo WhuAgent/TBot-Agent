@@ -1,0 +1,9 @@
+def CheckFolderExists(folder_path):
+    """
+    检查指定路径的文件夹是否存在
+    ---
+    参数：
+        folder_path: 文件夹路径
+    返回值：
+        b_Ret: 文件夹是否存在（布尔值）
+    """

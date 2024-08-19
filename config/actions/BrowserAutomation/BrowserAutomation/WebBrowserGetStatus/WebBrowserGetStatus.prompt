@@ -1,0 +1,9 @@
+def WebBrowserGetStatus(self, args):
+    """
+    等待目标浏览器网页加载完成
+    ---
+    参数:
+        wait_time: 等待时间
+    返回值:
+        无返回值
+    """

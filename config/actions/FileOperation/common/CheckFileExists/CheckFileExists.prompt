@@ -1,0 +1,10 @@
+def CheckFileExists(file_path):
+    """
+    检查指定路径的文件是否存在
+    ---
+    参数：
+        file_path: 文件路径
+    返回值：
+        b_Ret: 文件是否存在（布尔值）
+    """
+

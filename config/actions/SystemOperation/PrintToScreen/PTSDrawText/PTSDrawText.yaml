@@ -1,0 +1,16 @@
+args:
+  position: "[1920,1080,960,540]"
+  area: "[1920,1080]"
+  content: ""
+  char_size: "24"
+  color: "[255,0,0]"
+  unknown_args1: "0"
+  unknown_args2: "是"
+  unknown_args3: "否"
+  unknown_args4: "3000"
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  pr_result: pr_result

@@ -1,0 +1,9 @@
+def StartProcess(program_path):
+    """
+    打开指定路径的应用程序
+    ---
+    参数：
+        program_path: 应用程序的路径
+    返回值：
+        PID: 该程序进程的pid
+    """
