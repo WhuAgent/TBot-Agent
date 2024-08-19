@@ -12,3 +12,12 @@ WordCursorDeleteEnter: config.actions.OfficeAutomation.Word.WordCursorDeleteEnte
 WordCursorInsertEnter: config.actions.OfficeAutomation.Word.WordCursorInsertEnter.WordCursorInsertEnter
 WordCutSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCutSelectTextContentCommnad.WordCutSelectTextContentCommnad
 WordExportToPDF: config.actions.OfficeAutomation.Word.WordExportToPDF.WordExportToPDF
+WordGetFilePath: config.actions.OfficeAutomation.Word.WordGetFilePath.WordGetFilePath
+WordMoveSetCursor: config.actions.OfficeAutomation.Word.WordMoveSetCursor.WordMoveSetCursor
+WordReadDocument: config.actions.OfficeAutomation.Word.WordReadDocument.WordReadDocument
+WordSave: config.actions.OfficeAutomation.Word.WordSave.WordSave
+WordSaveAs: config.actions.OfficeAutomation.Word.WordSaveAs.WordSaveAs
+WordSelectLine: config.actions.OfficeAutomation.Word.WordSelectLine.WordSelectLine
+WordSetCursorPosition: config.actions.OfficeAutomation.Word.WordSetCursorPosition.WordSetCursorPosition
+WorkSelectTextContentPosition: config.actions.OfficeAutomation.Word.WorkSelectTextContentPosition.WorkSelectTextContentPosition
+WorldOverReadDocument: config.actions.OfficeAutomation.Word.WorldOverReadDocument.WorldOverReadDocument

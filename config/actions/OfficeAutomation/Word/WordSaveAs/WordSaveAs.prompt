@@ -1,0 +1,10 @@
+def WordSave(document, file_path):
+    """
+    将 Word 文档另存到新的地址
+    ---
+    参数：
+        document: 要操作的文档对象
+        file_path: 保存到的文件地址
+    返回值:
+        无返回值
+    """

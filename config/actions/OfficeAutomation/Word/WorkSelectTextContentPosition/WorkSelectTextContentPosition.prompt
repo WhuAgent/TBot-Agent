@@ -1,0 +1,11 @@
+def WorkSelectTextContentPosition(document, content, curse_position):
+    """
+    在文档中查找到指定文本后将光标设置在指定位置
+    ---
+    参数：
+        document: 要操作的文档对象
+        content: 指定文本内容
+        curse_position: 设置光标相对于文本的位置，可选值有 "光标在文本之后", "光标在文本之前", "选中文本" 三个值，默认为 "光标在文本之后"
+    返回值：
+        无返回值
+    """
