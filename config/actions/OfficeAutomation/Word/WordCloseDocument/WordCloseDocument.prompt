@@ -1,6 +1,6 @@
-def WordAddDocument(document):
+def WordCloseDocument(document):
     """
-    添加新的Word文件
+    关闭指定的Word文件
     ---
     参数:
         document: 要操作的文档对象

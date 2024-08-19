@@ -10,3 +10,5 @@ WordAppendImage: config.actions.OfficeAutomation.Word.WordAppendImage.WordAppend
 WordAppendText: config.actions.OfficeAutomation.Word.WordAppendText.WordAppendText
 WordCursorDeleteEnter: config.actions.OfficeAutomation.Word.WordCursorDeleteEnter.WordCursorDeleteEnter
 WordCursorInsertEnter: config.actions.OfficeAutomation.Word.WordCursorInsertEnter.WordCursorInsertEnter
+WordCutSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCutSelectTextContentCommnad.WordCutSelectTextContentCommnad
+WordExportToPDF: config.actions.OfficeAutomation.Word.WordExportToPDF.WordExportToPDF
