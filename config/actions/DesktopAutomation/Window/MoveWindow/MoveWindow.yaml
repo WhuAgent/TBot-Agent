@@ -1,0 +1,8 @@
+args:
+  window_name: ""
+  way: "Contains"
+  x: 0
+  y: 0
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
