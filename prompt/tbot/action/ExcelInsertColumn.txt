@@ -1,0 +1,13 @@
+def ExcelInsertColumn(self, sheet_name, column_name, content):
+    """
+    在指定工作表中插入列并设置内容
+    ---
+    参数：
+        sheet_name: 工作表名称
+        column_name: 列名称
+        content: 要插入的内容
+    返回值：
+        无返回值
+    """
+     
+

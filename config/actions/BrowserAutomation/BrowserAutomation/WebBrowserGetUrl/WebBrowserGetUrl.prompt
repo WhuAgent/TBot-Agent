@@ -1,0 +1,4 @@
+def WebBrowserGetUrl(self):
+    """
+    Get the current URL of the web browser, then save the url in v_Ret
+    """

@@ -1,0 +1,4 @@
+def WebBrowserGetTitle(self):
+    """
+    Get the title of the current page, saved in v_Ret
+    """

@@ -1,0 +1,14 @@
+def ExcelFontColor(excel_object, sheet_name, cell_name, color):
+    """
+    设置指定单元格的字体颜色
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        cell_name: 单元格名称
+        color: 双引号""包围RGB数组格式的颜色值，如""255, 0, 0""(需要用双引号包围)表示红色
+    返回值：
+        无返回值
+    """
+
+

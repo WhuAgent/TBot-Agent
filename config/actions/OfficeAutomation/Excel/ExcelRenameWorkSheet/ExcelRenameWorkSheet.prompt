@@ -1,0 +1,12 @@
+def ExcelRenameWorkSheet(excel_object, old_sheet_name, new_sheet_name):
+    """
+    重命名工作表
+    ---
+    参数：
+        excel_object: Excel对象
+        old_sheet_name: 旧的工作表名称
+        new_sheet_name: 新的工作表名称
+    返回值：
+        无返回值
+    """
+     
