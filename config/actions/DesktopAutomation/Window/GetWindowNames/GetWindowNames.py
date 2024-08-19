@@ -2,7 +2,7 @@ import yaml
 
 from utils.function import function_args2str, function_rets2str
 
-config_path = "config/actions/OfficeAutomation/Window/GetWindowClass/GetWindowClass.yaml"
+config_path = "config/actions/DesktopAutomation/Window/GetWindowNames/GetWindowNames.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,8 +12,8 @@ def decorate_args(args):
     return args
 
 
-def GetWindowClass(args):
+def GetWindowNames(args):
     args = decorate_args(args)
     rets_str = function_rets2str(config, args)
     args_str = function_args2str(config, args)
-    return f"{rets_str}=GetWindowClass({args_str})"
+    return f"{rets_str}=GetWindowNames({args_str})"

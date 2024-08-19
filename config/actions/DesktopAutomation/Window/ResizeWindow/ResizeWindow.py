@@ -2,7 +2,7 @@ import yaml
 
 from utils.function import function_args2str, function_rets2str
 
-config_path = "config/actions/OfficeAutomation/Window/CheckWindowNameExists/CheckWindowNameExists.yaml"
+config_path = "config/actions/DesktopAutomation/Window/ResizeWindow/ResizeWindow.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,8 +12,7 @@ def decorate_args(args):
     return args
 
 
-def CheckWindowNameExists(args):
+def ResizeWindow(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    rets_str = function_rets2str(config, args)
-    return f"{rets_str}=CheckWindowNameExists({args_str})"
+    return f"ResizeWindow({args_str})"

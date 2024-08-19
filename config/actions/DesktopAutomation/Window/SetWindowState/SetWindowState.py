@@ -2,7 +2,7 @@ import yaml
 
 from utils.function import function_args2str, function_rets2str
 
-config_path = "config/actions/OfficeAutomation/Window/GetWindowPid/GetWindowPid.yaml"
+config_path = "config/actions/DesktopAutomation/Window/SetWindowState/SetWindowState.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,8 +12,7 @@ def decorate_args(args):
     return args
 
 
-def GetWindowPid(args):
+def SetWindowState(args):
     args = decorate_args(args)
-    rets_str = function_rets2str(config, args)
     args_str = function_args2str(config, args)
-    return f"{rets_str}=GetWindowPid({args_str})"
+    return f"SetWindowState({args_str})"

@@ -1,8 +1,8 @@
 import yaml
 
 from utils.function import function_args2str, function_rets2str
-from utils.logger import Logger
-config_path = "config/actions/OfficeAutomation/Window/MoveWindow/MoveWindow.yaml"
+
+config_path = "config/actions/DesktopAutomation/Window/WaitForWindow/WaitForWindow.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,9 +12,7 @@ def decorate_args(args):
     return args
 
 
-def MoveWindow(args):
+def WaitForWindow(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    logger = Logger(root="log/tbot/")
-    logger.log(args_str)
-    return f"MoveWindow({args_str})"
+    return f"WaitForWindow({args_str})"

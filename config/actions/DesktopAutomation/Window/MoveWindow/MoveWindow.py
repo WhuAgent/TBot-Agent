@@ -1,8 +1,8 @@
 import yaml
 
 from utils.function import function_args2str, function_rets2str
-
-config_path = "config/actions/OfficeAutomation/Window/ResizeWindow/ResizeWindow.yaml"
+from utils.logger import Logger
+config_path = "config/actions/DesktopAutomation/Window/MoveWindow/MoveWindow.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,7 +12,9 @@ def decorate_args(args):
     return args
 
 
-def ResizeWindow(args):
+def MoveWindow(args):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
-    return f"ResizeWindow({args_str})"
+    logger = Logger(root="log/tbot/")
+    logger.log(args_str)
+    return f"MoveWindow({args_str})"
