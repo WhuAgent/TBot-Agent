@@ -1,0 +1,9 @@
+def StopProgram(process_name):
+    """
+    关闭指定进程程序
+    ---
+    参数：
+        process_name: 进程名称，计算器calc的进程名字为CalculatorAPP，记事本notepad的进程名字为notepad，控制台cmd的进程名字为cmd
+    返回值：
+        无返回值
+    """

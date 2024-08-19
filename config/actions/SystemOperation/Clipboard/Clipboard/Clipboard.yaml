@@ -1,0 +1,7 @@
+args:
+  arg1: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  content: content

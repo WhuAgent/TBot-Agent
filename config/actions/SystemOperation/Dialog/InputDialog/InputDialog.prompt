@@ -1,0 +1,12 @@
+def InputDialog(title, message, preset, num_only):
+    """
+    打开输入对话框，得到用户的输入
+    ---
+    参数：
+        title: 对话框标题内容
+        message: 对用户的提示信息
+        preset: 输入框中的默认值，若没有则为""
+        num_only: 是否只支持数字，一般为0，即默认关闭
+    返回值：
+        input: 返回用户输入的信息
+    """

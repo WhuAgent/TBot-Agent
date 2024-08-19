@@ -1,0 +1,9 @@
+def PTSCleanText(time):
+    """
+    清除屏幕上绘制的文字
+    ---
+    参数：
+        time: 延时time毫秒执行，默认为0
+    返回值：
+        cl_result: 布尔类型，返回执行结果，执行成功后返回值是true
+    """
