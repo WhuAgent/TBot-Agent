@@ -1,4 +1,4 @@
 args:
   document: ""
 rets:
-  return_path: FilePath1
+  file_path: FilePath1

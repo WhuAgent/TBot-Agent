@@ -5,5 +5,5 @@ WordGetFilePath(document):
     参数:
         document: 要操作的文档对象
     返回值:
-        return_path: 返回查询到的文件路径
+        file_path: 返回查询到的文件路径
     """
