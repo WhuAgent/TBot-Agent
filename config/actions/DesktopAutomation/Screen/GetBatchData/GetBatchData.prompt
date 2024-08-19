@@ -1,0 +1,15 @@
+def GetBatchData(element_name, handle_obj, status):
+    """
+    根据元素句柄批量提取元素中多页数据表。
+    ---
+    参数：
+        element_name: 元素主题
+        status: 表示是否多页抓取。枚举值，1表示只抓当前页，2表示抓取多页。
+        next_name: 下一页元素主题。如果status为1，则不需要此参数。
+        sheet_num: 需要抓取的页数。自然数，0表示抓取所有页，正整数表示具体抓取的页数，如1，2，3，默认值为0。如果status为1，则不需要此参数。
+        next_delay: 翻页延时。单位为ms，正整数类型，默认为1000。
+        next_handle: 下一页元素句柄，用来换页。如果status为1，则不需要此参数。
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        table: 数据表。
+    """

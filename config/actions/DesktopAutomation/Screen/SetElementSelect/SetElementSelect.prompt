@@ -1,0 +1,13 @@
+def SetElementSelect(element_name, handle_obj, status, method, content):
+    """
+    根据一定的选择规则，将句柄指定元素中的某些项设置为所有被选择或者所有没被选择。
+    ---
+    参数：
+        element_name: 元素主题
+        status: 设置选择状态。枚举值，只有选中和取消选中
+        method：选择的规则。枚举值，只有按索引选择、按文本选择和按value选择
+        content：选择的规则所用的值
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        无返回值
+    """

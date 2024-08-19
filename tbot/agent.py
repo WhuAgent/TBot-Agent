@@ -2,7 +2,7 @@ import json
 import re
 import yaml
 
-from tbot.utils import get_system_prompt, get_task_prompt
+from tbot.util import get_system_prompt, get_task_prompt
 from utils.logger import Logger
 from utils.llm import chat_llm
 from utils.function import dynamic_import
