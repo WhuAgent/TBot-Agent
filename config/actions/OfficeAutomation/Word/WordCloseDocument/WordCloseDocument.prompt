@@ -1,0 +1,9 @@
+def WordCloseDocument(document):
+    """
+    关闭文档
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        无返回值
+    """

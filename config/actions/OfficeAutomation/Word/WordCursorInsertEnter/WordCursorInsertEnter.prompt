@@ -1,0 +1,9 @@
+def WordCursorInsertEnter(document):
+    """
+    在文档中被选中的区域删除一个字符
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        无返回值
+    """

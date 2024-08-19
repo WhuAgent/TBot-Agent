@@ -1,0 +1,10 @@
+def WordFontNameCommmand(document, font):
+    """
+    设置文档选中区域文字的字体
+    ---
+    参数:
+        document: 要操作的文档对象
+        font: 设置成的字体
+    返回值:
+        无返回值
+    """
