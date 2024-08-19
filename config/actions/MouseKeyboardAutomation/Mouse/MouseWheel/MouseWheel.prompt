@@ -1,0 +1,11 @@
+def MouseWheel(self, scrolls, scroll_mode, auxiliary_key):
+    """
+    模拟鼠标的滚轮操作
+    ---
+    参数：
+        scrolls: 鼠标滚轮滚动次数
+        scroll_mode: 鼠标滚轮滚动方式，包含：向后滚动，向前滚动，默认为向后滚动
+        auxiliary_key: 辅助按键，可以同时选择多个辅助按键，例如["ctrl","shift"]，包含：ctrl，shift，alt，win，默认为[]
+    返回值：
+        无返回值
+    """

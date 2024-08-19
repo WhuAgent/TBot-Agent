@@ -1,0 +1,8 @@
+args:
+  start_point: 0,0
+  end_point: 0,0
+  click_event: 左键
+  auxiliary_key: []
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False

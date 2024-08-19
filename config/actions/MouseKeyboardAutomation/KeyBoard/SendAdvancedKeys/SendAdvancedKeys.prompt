@@ -1,0 +1,16 @@
+def SendAdvancedKeys(self, analog_key, key_action, auxiliary_key):
+    """
+    未指定元素时模拟键盘按键
+    ---
+    参数：
+        analog_key: 待模拟按下的键，包括键盘上的按键{0，1，2，3，4，5，6，7，8，9，Q，W，E，R，T，Y，U，I，O，P，A，S，D，F，G，H，J，K，L，Z，X，C，V，B，N，M，
+        Back，Tab，Enter，Shift，Ctrl，Alt，CapsLock，Escape，Space，PageUp，PageDown，End，Home，Left，Up，Right，Down，PrintScreen，Insert，Delete，
+        LWin，RWin，Sleep，NumPad0，NumPad1，NumPad2，NumPad3，NumPad4，NumPad5，NumPad6，NumPad7，NumPad8，NumPad9，
+        F1，F2，F3，F4，F5，F6，F7，F8，F9，F10，F11，F12，NumLock，Scroll，
+        LShiftKey，RShiftKey，LControlKey，RControlKey，LMenu，RMenu，;，?，~，[，|，]，+，-，/，'，,，.，*}
+        默认为Enter
+        key_action: 按键动作，包括：按下并弹起，按下，弹起，默认为按下并弹起
+        auxiliary_key: 辅助按键，可以同时选择多个辅助按键，例如["ctrl","shift"]，包含：ctrl，shift，alt，win，默认为[]
+    返回值：
+        无返回值
+    """

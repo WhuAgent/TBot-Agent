@@ -1,0 +1,10 @@
+def ExcelDeleteArea(self, table, area):
+    """
+    删除指定工作表中的指定区域
+    ---
+    参数：
+        table: 指定工作表
+        area: 指定区域
+    返回值：
+        无返回值
+    """
