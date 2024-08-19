@@ -1,0 +1,15 @@
+def MouseClickText(self,click_type,click_event,text,rule,target,target_name,target_pic):
+    """
+    点击文本
+    ---
+    参数:
+        click_type：点击类型，值为“单击”、“按下”、“弹起”、“双击”其中之一
+        click_event：点击事件，值为“左键”、“中键”、“右键”其中之一
+        text：文本
+        rule: 查找规则，可选项有“包含文本”、“正则表达式匹配”
+        target: 查找目标
+        target_name: 目标名称
+        target_pic: unknown
+    返回值:
+        无返回值
+    """

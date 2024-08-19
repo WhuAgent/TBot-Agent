@@ -1,0 +1,12 @@
+def GetAppointPage(self,file_path,password,page_start,page_end):
+    """
+    获取指定页中的文本或文字
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+        password: 密码，默认为""
+        page_start: 指定页的开始页码
+        page_end: 指定页的结束页码
+    返回值：
+        返回文本
+    """

@@ -1,0 +1,13 @@
+args:
+  target_name: ""
+  text: ""
+  rule: ""
+  text_number: 1
+  target: ""
+  target_pic: ""
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  element_ret: v_Element

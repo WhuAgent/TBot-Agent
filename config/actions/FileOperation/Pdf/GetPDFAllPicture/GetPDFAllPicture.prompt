@@ -1,0 +1,12 @@
+def GetPDFAllPicture(self,file_path,password,picture_path,picture_format):
+    """
+    获取pdf文件中的所有图片，保存到指定路径
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+        password: 密码,一般为""
+        picture_path：将图片保存的位置，默认值为"C:\\Users\\19101\\Desktop"
+        picture_format: 图片存储格式，值为JPG,BMP,PNG其中之一，默认为PNG
+    返回值：
+        无返回值
+    """
