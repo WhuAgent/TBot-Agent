@@ -1,0 +1,9 @@
+args:
+  arg1: "0"
+  unknown_args2: "0"
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  lock_result: lock_result

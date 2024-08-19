@@ -1,0 +1,10 @@
+def GetParentFile(file_path):
+    """
+    获取指定路径文件的父目录
+    ---
+    参数：
+        file_path: 文件路径
+    返回值：
+        parent_path: 父目录路径
+    """
+

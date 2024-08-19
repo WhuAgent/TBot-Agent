@@ -1,0 +1,11 @@
+def GetElementAttribute(element_name, handle_obj, attribute):
+    """
+    根据元素句柄获取元素的属性值。
+    ---
+    参数：
+        element_name: 元素主题
+        attribute: 用来指定某个属性
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        value: 属性值
+    """

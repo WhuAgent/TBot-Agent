@@ -1,0 +1,11 @@
+def GetElementSelect(element_name, handle_obj, status):
+    """
+    根据元素句柄获取元素所有被选择的项或者所有没被选择的项。
+    ---
+    参数：
+        element_name: 元素主题
+        status: 设置选择状态。枚举值，选中项表示所有被选择的项，未选中项表示所有没被选择的项
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        id_list: 符合条件的所有项的索引列表
+    """

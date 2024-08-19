@@ -1,0 +1,10 @@
+def SendMouseClick(self, click_type, click_event):
+    """
+    在未指定目标元素时模拟鼠标的点击动作
+    ---
+    参数：
+        click_type: 鼠标点击类型，包括：单击，双击，按下，弹起
+        click_event: 鼠标点击事件，包括：左键，中键，右键
+    返回值：
+        无返回值
+    """

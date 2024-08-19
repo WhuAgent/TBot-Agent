@@ -1,0 +1,4 @@
+def WebBrowserGoBack(self):
+    """
+    Go back in the web browser history.
+    """

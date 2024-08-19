@@ -1,0 +1,10 @@
+def CheckElementExists(element_name, handle_obj):
+    """
+    根据元素句柄判断指定元素是否存在。
+    ---
+    参数：
+        element_name: 元素主题
+        handle_obj: 句柄类型变量，用来指定元素
+    返回值：
+        bool_obj: 布尔类型值，True表示元素存在，False表示元素不存在
+    """

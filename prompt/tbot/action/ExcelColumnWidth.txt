@@ -1,0 +1,13 @@
+def ExcelColumnWidth(self, sheet_name, column_name, width):
+    """
+    设置指定工作表中指定列的宽度
+    ---
+    参数：
+        sheet_name: 工作表名称
+        column_name: 列名称
+        width: 列宽度
+    返回值：
+        无返回值
+    """
+     
+

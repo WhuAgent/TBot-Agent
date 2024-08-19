@@ -1,0 +1,9 @@
+def RunPowershell(ps_name):
+    """
+    执行指定的PowerShell脚本文件，返回PowerShell执行过程中的控制台输出文本
+    ---
+    参数：
+        ps_name: 要执行的脚本文件路径
+    返回值：
+        output_text: PowerShell执行过程中的控制台输出文本。注意，需要指定一个变量名。
+    """
