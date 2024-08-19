@@ -1,0 +1,4 @@
+def WebBrowserCloseTab(self):
+    """
+    Close the current tab in the web browser.
+    """

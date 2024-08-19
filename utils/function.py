@@ -3,7 +3,7 @@ import os
 
 
 def function_args2str(config, args):
-    return ", ".join(f"{args.get(key, value)}" for key, value in config.get("args").items())
+    return ", ".join(f'\"{args.get(key, value)}\"' for key, value in config.get("args").items())
 
 
 def function_rets2str(config, args):
