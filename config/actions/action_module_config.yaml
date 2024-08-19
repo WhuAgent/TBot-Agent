@@ -10,6 +10,17 @@ WordOpenDocument: config.actions.OfficeAutomation.Word.WordOpenDocument.WordOpen
 WordCopySelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordCopySelectTextContentCommnad.WordCopySelectTextContentCommnad
 WordPasteSelectTextContentCommnad: config.actions.OfficeAutomation.Word.WordPasteSelectTextContentCommnad.WordPasteSelectTextContentCommnad
 WordSelectAll: config.actions.OfficeAutomation.Word.WordSelectAll.WordSelectAll
+TargetMouseClick: config.actions.MouseKeyboardAutomation.Mouse.TargetMouseClick.TargetMouseClick
+SendTargetMouseMove: config.actions.MouseKeyboardAutomation.Mouse.SendTargetMouseMove.SendTargetMouseMove
+SendMouseClick: config.actions.MouseKeyboardAutomation.Mouse.SendMouseClick.SendMouseClick
+SendMouseMove: config.actions.MouseKeyboardAutomation.Mouse.SendMouseMove.SendMouseMove
+GetMousePoint: config.actions.MouseKeyboardAutomation.Mouse.GetMousePoint.GetMousePoint
+MouseDrag: config.actions.MouseKeyboardAutomation.Mouse.MouseDrag.MouseDrag
+MouseWheel: config.actions.MouseKeyboardAutomation.Mouse.MouseWheel.MouseWheel
+SendTargetKeys: config.actions.MouseKeyboardAutomation.KeyBoard.SendTargetKeys.SendTargetKeys
+SendTargetAdvancedKeys: config.actions.MouseKeyboardAutomation.KeyBoard.SendTargetAdvancedKeys.SendTargetAdvancedKeys
+SendKeys: config.actions.MouseKeyboardAutomation.KeyBoard.SendKeys.SendKeys
+SendAdvancedKeys: config.actions.MouseKeyboardAutomation.KeyBoard.SendAdvancedKeys.SendAdvancedKeys
 OpenCSV: config.actions.FileOperation.csv.OpenCSV.OpenCSV
 WaitForFileToExist: config.actions.FileOperation.common.WaitForFileToExist.WaitForFileToExist
 ExtractFile: config.actions.FileOperation.common.ExtractFile.ExtractFile
