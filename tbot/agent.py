@@ -2,31 +2,45 @@ import json
 import re
 import yaml
 
-from tbot.util import get_system_prompt, get_task_prompt
+from tbot.vectordb import TaskVectorDB
+from tbot.util import add_relevant_actions_prompt, get_action_configs, task_abstraction
 from utils.logger import Logger
 from utils.llm import chat_llm
 from utils.function import dynamic_import
 
-action_module_config_path = "config/actions/action_module_config.yaml"
-with open(action_module_config_path, "r", encoding="UTF-8") as f:
-    action_module_config = yaml.safe_load(f)
+
+action_config = get_action_configs("config/actions")
 
 
 class TBotAgent:
     def __init__(self, task):
         self.logger = Logger(root="log/tbot/")
 
+        self.task = task
+        self.abstracted_task = task_abstraction(self.task)
+        self.taskdb = TaskVectorDB("manual")
+        self.relevant_commands = self.taskdb.get_relevant_commands(self.abstracted_task)
+
         self.model = "gpt-3.5-turbo"
-        self.system_prompt = get_system_prompt()
-        self.task_prompt = get_task_prompt(task)
-        self.messages = [
-            {"role": "system", "content": self.system_prompt},
-            {"role": "user", "content": self.task_prompt}
-        ]
+        self.prompt_path = "prompt/tbot.yaml"
+        self.messages = self.get_prompt()
         for message in self.messages:
             self.log(f"{message['role']}:\n{message['content']}")
 
         self.plan = []
+
+    def get_prompt(self):
+        with open(self.prompt_path, "r", encoding="utf-8") as f:
+            prompt = yaml.safe_load(f)
+        system_prompt = prompt["system_prompt"]
+        task_prompt = prompt["task_prompt"]
+        task_prompt = task_prompt.replace("{task}", self.task)
+        task_prompt = task_prompt.replace("{actions}", add_relevant_actions_prompt(self.relevant_commands, action_config))
+        return [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": task_prompt}
+        ]
+
 
     def generate_plan(self):
         response = chat_llm(self.model, self.messages)
@@ -50,7 +64,7 @@ class TBotAgent:
                 for variable in step.get("rets").values():
                     variable_defines.append(variable)
                 args.update(step.get("rets"))
-            action_module = action_module_config[action]
+            action_module = action_config[action]["action_module"]
             _, action_func = dynamic_import(action_module, action)
             code = action_func(args)
             codes.append(code)
