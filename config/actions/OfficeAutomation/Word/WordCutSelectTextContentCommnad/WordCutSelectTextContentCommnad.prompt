@@ -1,6 +1,6 @@
-def WordCopySelectTextContentCommnad(document):
+def WordCutSelectTextContentCommnad(document):
     """
-    对文档中被选中的区域执行复制操作
+    对文档的选区执行剪切操作
     ---
     参数:
         document: 要操作的文档对象
