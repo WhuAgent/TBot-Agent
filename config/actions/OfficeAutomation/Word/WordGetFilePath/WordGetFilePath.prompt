@@ -1,0 +1,9 @@
+WordGetFilePath(document):
+    """
+    获取文档路径，输出到指定位置
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        file_path: 返回查询到的文件路径
+    """

@@ -1,0 +1,11 @@
+def PDFSetPwd(self,file_path,save_path,password):
+    """
+    将指定页另存为图片
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+        save_path：加密后的文件存放的新路径，为文件夹的路径，默认值为"C:\\Users\\19101\\Desktop"
+        password: 加密的密码
+    返回值：
+        无返回值
+    """

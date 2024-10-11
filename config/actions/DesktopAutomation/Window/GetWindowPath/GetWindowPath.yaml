@@ -1,0 +1,9 @@
+args:
+  window_name: ""
+  way: "Contains"
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  window_path: v_Path

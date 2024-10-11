@@ -1,0 +1,14 @@
+def ExcelMergeCell(excel_object, sheet_name, cell_name, action):
+    """
+    合并或拆分指定单元格
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+        cell_name: 单元格名称
+        action: 操作（合并或拆分）,此参数用中文表示
+    返回值：
+        无返回值
+    """
+     
+

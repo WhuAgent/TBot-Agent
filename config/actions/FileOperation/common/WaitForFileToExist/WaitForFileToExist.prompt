@@ -1,0 +1,10 @@
+def WaitForFileToExist(file_path,max_waiting_time):
+    """
+    在指定超时时间范围内，判断路径对应的文件是否存在
+    ---
+    参数：
+        file_path: 指定的文件路径
+        max_waiting_time: 超时时间，单位为毫秒，默认5毫秒
+    返回值：
+        if_exists： 返回的布尔值，True表示存在，False表示不存在。注意，需要指定一个变量名。
+    """

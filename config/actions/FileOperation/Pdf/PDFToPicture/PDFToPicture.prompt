@@ -1,0 +1,13 @@
+def PDFToPicture(self, file_path,password,picture_path,page_start,page_end):
+    """
+    将指定页另存为图片
+    ---
+    参数：
+        file_path: 指定的pdf文件路径
+        password: 密码，默认为空
+        picture_path：将图片保存的位置，默认值为"C:\\Users\\19101\\Desktop"
+        page_start: 指定页的开始页码
+        page_end: 指定页的结束页码
+    返回值：
+        无返回值
+    """

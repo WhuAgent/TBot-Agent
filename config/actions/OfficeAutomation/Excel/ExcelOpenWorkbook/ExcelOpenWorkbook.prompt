@@ -1,0 +1,9 @@
+def ExcelOpenWorkbook(self, file_path):
+    """
+    通过指定路径打开一个Excel工作簿文件，并返回Excel对象
+    ---
+    参数：
+        file_path: Excel工作簿文件路径
+    返回值：
+        无返回值
+    """

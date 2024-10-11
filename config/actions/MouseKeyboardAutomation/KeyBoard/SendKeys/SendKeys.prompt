@@ -1,0 +1,11 @@
+def SendKeys(self, text, write_interval, operation_type):
+    """
+    未指定界面元素时输入文本
+    ---
+    参数：
+        text: 要在指定的界面元素中写入的文本
+        write_interval: 两次输入之间的间隔，单位为ms，默认为20ms
+        operation_type: 后台的操作类型，1表示系统操作，3表示模型操作，默认值为3
+    返回值：
+        无返回值
+    """

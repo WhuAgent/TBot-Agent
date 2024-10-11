@@ -1,0 +1,9 @@
+def WordReadDocument(document):
+    """
+    读取 Word 文档内的全部内容并输出到对象
+    ---
+    参数：
+        document: 要操作的文档对象
+    返回值：
+        read_object: 读取内容后输出的对象
+    """

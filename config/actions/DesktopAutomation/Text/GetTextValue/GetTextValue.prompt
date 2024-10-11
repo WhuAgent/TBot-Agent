@@ -1,0 +1,11 @@
+def GetTextValue(self,target,target_name,target_pic):
+    """
+    获取界面元素中的文本
+    ---
+    参数:
+        target: 查找目标
+        target_name: 目标名称
+        target_pic: unknown
+    返回值:
+        返回文本内容
+    """

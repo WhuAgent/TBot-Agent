@@ -1,0 +1,18 @@
+def TargetMouseClick(self, area, name, click_type, click_event, cursor_position, x_offset, y_offset, operation_type, pre_delay, post_delay):
+    """
+    单击指定的界面元素
+    ---
+    参数：
+        area: 界面上的区域
+        name: 指定元素名字
+        click_type: 鼠标点击类型，包括：单击，双击，按下，弹起，默认为单击
+        click_event: 鼠标点击事件，包括：左键，中键，右键，默认为左键
+        cursor_position: 光标位置，包括：中心，左上角， 左下角， 右上角，右下角，默认为中心
+        x_offset: 横坐标的偏移量，默认为0
+        y_offset: 纵坐标的偏移量，默认为0
+        operation_type: 鼠标操作类型，参数类型为枚举类型，1表示系统操作，2表示后台操作，3表示模型操作，默认为3
+        pre_delay: 在命令执行之前暂停多少毫秒，默认为0
+        post_delay: 在命令执行之后暂停多少毫秒，默认为0
+    返回值：
+        无返回值
+    """

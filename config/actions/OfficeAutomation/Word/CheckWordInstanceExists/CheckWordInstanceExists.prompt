@@ -1,0 +1,9 @@
+def CheckWordInstanceExists(document):
+    """
+    检测word文档对象是否存在，将结果输出到返回值
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        word_object: 检测结果
+    """

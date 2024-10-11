@@ -1,0 +1,10 @@
+def WebBrowserCreate(self, args):
+    """
+    启动一个新的浏览器, 并绑定到对象v_Browser中
+    ---
+    参数:
+        browser_type: 选择启动的浏览器类型
+        base_url: 浏览器打开的初始网页, 默认为about:blank打开空白页
+    返回值:
+        browser_object: 打开的浏览器对象
+    """

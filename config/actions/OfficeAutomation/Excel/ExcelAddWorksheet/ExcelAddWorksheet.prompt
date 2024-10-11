@@ -1,0 +1,13 @@
+def ExcelAddWorksheet(excel_object, sheet_name, target_sheet_name):
+    """
+    添加新的工作表
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 新工作表名称
+        target_sheet_name: 当前目标工作表的名称
+    返回值：
+        无返回值
+    """
+     
+

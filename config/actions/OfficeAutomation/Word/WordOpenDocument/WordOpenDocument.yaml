@@ -1,0 +1,12 @@
+args:
+  show_word: '"是"'
+  file_path: ""
+  open_way: '"Office"'
+  if_new: '"否"'
+  if_output2new_object: '"是"'
+  pre_delay: 0
+  post_delay: 0
+  continue_when_error: False
+
+rets:
+  word_object: Word1

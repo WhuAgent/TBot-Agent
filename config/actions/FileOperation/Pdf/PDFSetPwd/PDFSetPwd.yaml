@@ -1,0 +1,7 @@
+args:
+  file_path: ""
+  save_path: ""
+  password: ""
+  pre_delay: 20
+  post_delay: 0
+  continue_when_error: False

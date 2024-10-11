@@ -1,0 +1,9 @@
+def WordReadSelect(document):
+    """
+    读取文档被选中的区域内容，输出到返回值中
+    ---
+    参数:
+        document: 要操作的文档对象
+    返回值:
+        text_object: 被读取的内容
+    """

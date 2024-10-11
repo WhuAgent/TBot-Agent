@@ -1,0 +1,12 @@
+def ExcelGetColumnNumber(excel_object, sheet_name):
+    """
+    获取指定工作表的列数
+    ---
+    参数：
+        excel_object: Excel对象
+        sheet_name: 工作表名称
+    返回值：
+        column_number: 列数
+    """
+     
+

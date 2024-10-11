@@ -1,0 +1,9 @@
+def WordSelectAll(document):
+    """
+    全选Word文档中的内容
+    ---
+    参数：
+        document: 要操作的文档对象
+    返回值:
+        无返回值
+    """

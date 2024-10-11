@@ -1,0 +1,13 @@
+WordMoveSetCursor(document, move_num, move_type, move_direction, is_press_shift):
+    """
+    在文档中移动光标位置到指定位置
+    ---
+    参数：
+        document: 要操作的文档对象
+        move_num: 光标移动次数
+        move_type: 光标移动方式，可选值有 字符 ， 行 ， 段落 三个值
+        move_direction: 光标移动方向可选值有 上， 下 ， 左 ， 右 四个值
+        is_press_shift: 光标移动时是否按住shift，可选值有 "是" 或 "否" 两个值，默认值为 "是"
+    返回值：
+        无返回值
+    """

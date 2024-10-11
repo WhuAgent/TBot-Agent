@@ -1,0 +1,10 @@
+def ExcelReadCell(self, table, place):
+    """
+    读取指定工作表中指定单元格的值
+    ---
+    参数：
+        table: 指定工作表
+        place: 指定单元格
+    返回值：
+        v_Ret: 指定单元格的值
+    """

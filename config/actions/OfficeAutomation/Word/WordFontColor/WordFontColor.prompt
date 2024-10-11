@@ -1,0 +1,10 @@
+def WordFontColor(document, color):
+    """
+    设置文档选中区域文字的颜色
+    ---
+    参数:
+        document: 要操作的文档对象
+        color: 设置成的颜色，英文，首字母大写，例如"Black"
+    返回值:
+        无返回值
+    """
