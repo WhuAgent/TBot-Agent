@@ -1,2 +1,5 @@
 args:
   document: ""
+
+variables:
+  - document

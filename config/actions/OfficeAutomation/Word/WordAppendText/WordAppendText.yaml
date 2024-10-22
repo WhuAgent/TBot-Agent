@@ -6,3 +6,7 @@ args:
   bold: ""
   italic: ""
   underline: ""
+
+variables:
+  - document
+  - content

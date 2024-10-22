@@ -5,7 +5,7 @@ import yaml
 import json
 import pika
 
-from utils.llm import chat_llm
+from tbot.utils.llm import chat_llm
 
 def convert2dict(obj):
     return obj.to_dict()
@@ -52,6 +52,7 @@ def decorate_message(message, **kwargs):
         else:
             message = message.replace(origin, json.dumps(value, indent=4, ensure_ascii=False, default=convert2dict))
     return message
+
 
 def send_message(target: str, header, message):
     exchange = target + "Exchange"

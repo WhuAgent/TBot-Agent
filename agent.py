@@ -1,4 +1,6 @@
 import re
+from copy import deepcopy
+
 import pika
 import json
 import click
@@ -6,255 +8,167 @@ import traceback
 import yaml
 
 from agent_network.base import BaseAgent
-from tbot.vectordb import TaskPlanVectorDB, CommandVectorDB
+# from tbot.vectordb import TaskPlanVectorDB, CommandVectorDB
 from tbot.util import task_abstraction, send_message, decorate_message, get_action_configs, convert2dict
-from utils.function import dynamic_import
+from tbot.utils.function import dynamic_import
 from tbot.type import Variable
+
+from tbot.utils.llm import chat_llm
 
 action_config = get_action_configs("tbot/config/actions")
 
 
-class PlanAgent(BaseAgent):
-    def __init__(self, config_path, logger, context):
-        self.task_plan_db = TaskPlanVectorDB("tbot/manual/plan")
+class ManagerAgent(BaseAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+        self.initial_messages()
 
-        super().__init__(config_path, logger, context)
+    def initial_messages(self):
+        for prompt in self.config["prompts"]:
+            if prompt["type"] == "inline" and prompt["role"] == "system":
+                self.add_message(prompt["role"], prompt["content"])
 
+    def forward(self, message, **kwargs):
+        if error_message := kwargs["error"]:
+            prompt = f"在执行前一个任务的过程中，遇到了错误：\n\n{error_message}\n\n导致任务无法完成，请决定新的任务以解决这些错误"
+        else:
+            completed_tasks = json.dumps(kwargs["completed_tasks"], indent=4, ensure_ascii=False)
+            prompt = f"当前用户的需求为：{kwargs['task']}\n\n已完成的子任务为：{completed_tasks}\n\n请决定下一个需要完成的任务。如打开文档 A。"
+        self.add_message("user", prompt)
+        response = chat_llm(self.model, self.messages)
+        self.add_message(response.role, response.content)
 
-    def on_message(self, channel, method, properties, body):
-        message_from = properties.headers.get("message_from")
-        body = body.decode("UTF-8")
-        if body == "complete":
-            self.channel.stop_consuming()
-            return
-        # self.log(message_from, body)
-        self.forward(message_from, body)
-
-    def before_agent(self, content):
-        # click.echo(click.style("OK", fg="green"))
-        abstracted_task = task_abstraction(self.task)
-        relevant_plans = self.task_plan_db.get_relevant_plans(abstracted_task)
-
-        references = ""
-        for index, item in enumerate(relevant_plans):
-            references += f"任务 {index + 1}:\n"
-            references += f"{item['task']}\n"
-            references += f"计划 {index + 1}: \n"
-            references += f"{json.dumps(item['plan'], indent=4, ensure_ascii=False)}\n\n"
-
-        details = {
-            "task": self.retrieve("task"),
-            "plans": references
-        }
-
-        content = decorate_message(content, **details)
-        return content
-
-
-    def after_agent(self, success, result, message_to, context):
-        for key, value in context.items():
-            self.register(key, value)
-
-        message = self.get_prompt("after_plan")
-
-        header = {"message_from": self.class_name}
-        send_message(message_to, header, message)
-
-    def execute(self, response_content):
         pattern = "###([\s\S]*?)###"
-        data = re.findall(pattern, response_content)[-1]
-        data = yaml.safe_load(data)
-        result = data["plan"]
-        message_to = data["message_to"]
-        context = {"plan": data["plan"]}
-        return True, result, message_to, context
-
-class ExecutionAgent(BaseAgent):
-    def __init__(self, config_path, logger, context):
-        super().__init__(config_path, logger, context)
-
-    def on_message(self, channel, method, properties, body):
-        message_from = properties.headers.get("message_from")
-        body = body.decode("UTF-8")
-        if body == "complete":
-            self.channel.stop_consuming()
-            return
-        # click.echo(click.style(json.dumps(self.context, indent=4, ensure_ascii=False), fg="green"))
-        # print(f"ExecutionAgent Received: {body}")
-        self.forward(message_from, body)
-
-    def before_agent(self, content):
-        details = {
-            "task": self.retrieve("task"),
-            "plan": self.retrieve("plan"),
-            "cur_action": self.retrieve("cur_action"),
-            "history_actions": self.retrieve("history_actions")
-        }
-
-        content = decorate_message(content, **details)
-        return content
-
-    def execute(self, response_content):
-        pattern = "###([\s\S]*?)###"
-        data = re.findall(pattern, response_content)[-1]
+        data = re.findall(pattern, response.content)[0]
         data = yaml.safe_load(data)
 
-        result = data["action"]
-        message_to = data["message_to"]
-        new_context = {
-            "cur_action": data["action"]
+        results = {
+            "next_task": data["next_task"],
+            "next_agent": data["execution_agent"]
         }
-
-        return True, result, message_to, new_context
-
-    def after_agent(self, success, result, message_to, context):
-        if result == "complete":
-            self.register("complete", True)
-            return
-        for key, value in context.items():
-            self.register(key, value)
-
-        click.echo(click.style(json.dumps(self.context, indent=4, ensure_ascii=False, default=convert2dict), fg="green"))
-
-        message = self.get_prompt("after_one_step")
-
-        header = {"message_from": self.class_name}
-        send_message(message_to, header, message)
+        return results
 
 
-class ServiceAgent(BaseAgent):
-    def __init__(self, config_path, logger, context):
-        self.command_db = CommandVectorDB("tbot/manual/action")
+class OperationAgent(BaseAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+        self.initial_messages()
 
-        super().__init__(config_path, logger, context)
-
-
-    def on_message(self, channel, method, properties, body):
-        message_from = properties.headers.get("message_from")
-        body = body.decode("UTF-8")
-        if body == "complete":
-            self.channel.stop_consuming()
-            return
-        # print(f"ServiceAgent Received: {body}")
-        self.forward(message_from, body)
-
-    def before_agent(self, content):
-        cur_action = self.retrieve("cur_action")
-        error = self.retrieve("error")
-        task = self.retrieve("task")
-
-        relevant_commands = self.command_db.get_relevant_commands(cur_action)
-        manual = ""
-        for command in relevant_commands:
-            prompt_path = action_config[command]["prompt_path"]
+    @staticmethod
+    def add_service(prompt, services):
+        service_prompt = ""
+        for service in services:
+            prompt_path = action_config[service]["prompt_path"]
             with open(prompt_path, "r", encoding="UTF-8") as f:
-                manual = f"{manual}{f.read()}\n\n"
+                service_prompt = f"{service_prompt}{f.read()}\n\n"
+        prompt = prompt.replace("{services}", service_prompt)
+        return prompt
 
-        varibles = self.retrieve("variable_memory")
-        if varibles is None:
-            varibles = "None"
+    def initial_messages(self):
+        for prompt in self.config["prompts"]:
+            if prompt["type"] == "inline" and prompt["role"] == "system":
+                content = deepcopy(prompt["content"])
+                content = OperationAgent.add_service(content, self.config["services"])
+                self.add_message(prompt["role"], content)
 
-        details = {
-            "task": task,
-            "error": error,
-            "cur_action": cur_action,
-            "manual": manual,
-            "variables": varibles,
+    @staticmethod
+    def check_var_name(var_name, variables):
+        for variable in variables:
+            if variable["name"] == var_name:
+                return False
+        return True
+
+    def forward(self, message, errors=[], **kwargs):
+        results = {}
+        for result in self.results:
+            results[result["name"]] = deepcopy(kwargs.get(result["name"]))
+
+        try:
+            prompt = f"当前需要进行的操作为：{kwargs['next_task']}\n\n内存中已存在的变量有：{json.dumps(kwargs['variables'], indent=4, ensure_ascii=False)}"
+            if len(errors) > 0:
+                error_message = json.dumps(errors, indent=4, ensure_ascii=False)
+                prompt = f"{prompt}\n\n在之前的生成过程中，产生了如下错误: \n {error_message}\n\n 请注意修复！"
+            self.add_message("user", prompt)
+            response = chat_llm(self.model, self.messages)
+            self.add_message(response.role, response.content)
+
+            pattern = "###([\s\S]*?)###"
+            data = re.findall(pattern, response.content)[0]
+            services = yaml.safe_load(data)
+
+            for service in services:
+                service_name = service["name"]
+                args = service.get("args")
+                if servie_rets := service.get("rets"):
+                    for ret in servie_rets:
+                        if ret["var"] is None:
+                            continue
+                        args.update({ret["name"]: ret["var"]})
+                        if not OperationAgent.check_var_name(ret["var"], kwargs["variables"]):
+                            raise Exception("变量名和已有的变量重复")
+                        results["variables"].append({
+                            "name": ret["var"],
+                            "think": ret["think"]
+                        })
+                service_module = action_config[service_name]["action_module"]
+                _, service_func = dynamic_import(service_module, service_name)
+                code = service_func(args, results["variables"])
+                results["code"].append(code)
+            results["completed_tasks"].append(kwargs["next_task"])
+            results["error"] = ""
+            results["next_agent"] = "ManagerAgent"
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            if e.__class__ == KeyError:
+                error_message = "请确保要调用的服务 name 被正确设置"
+            else:
+                error_message = str(e)
+                if "请配置返回值变量名" in error_message:
+                    error_message = "请确保 rets.name 与服务说明中的返回值名称相互对应, 如 word_object"
+            errors.append(error_message)
+            if len(errors) <= 5:
+                return self.forward("", errors, **kwargs)
+            else:
+                results["error"] = json.dumps(errors, indent=4, ensure_ascii=False)
+                results["next_agent"] = "ManagerAgent"
+
+        return results
+
+class WordOperationAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
+class ExcelOperationAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
+class CodeExecutionAgent(BaseAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+        self.initial_messages()
+
+    def initial_messages(self):
+        pass
+
+    def forward(self, message, **kwargs):
+        code = kwargs.get("code")
+        variables = kwargs.get("variables")
+
+        lines = []
+        for variable in variables:
+            var_name = variable["name"]
+            lines.append(f'Dim {var_name} = \"\"')
+        lines.append("\n")
+
+        lines.extend(code)
+        code_content = "\n".join(lines)
+        # print(code_content)
+        results = {
+            "next_task": "COMPLETE"
         }
-
-        content = decorate_message(content, **details)
-        return content
-
-    def execute(self, response_content):
-        pattern = "###([\s\S]*?)###"
-        data = re.findall(pattern, response_content)[-1]
-        data = yaml.safe_load(data)
-
-        new_context = dict()
-
-        command_name = data["command"]
-        if command_name == "ExecutionReflexion":
-            new_context = {"message": data["think"]}
-            return False, "ExecutionReflexion", data["message_to"], new_context
-        else:
-            args = dict()
-            if data.get("args"):
-                for arg_name, arg_value in data["args"].items():
-                    val = self.find_variables(arg_value)
-                    args[arg_name] = val if val else arg_value
-                    if val:
-                        print(type(val), val)
-                        print(args[arg_name])
-            if data.get("rets"):
-                for ret_data in data["rets"]:
-                    think = f"打开的 {data['args']['file_path']} 文档对象"
-                    new_variable = Variable(ret_data["var_name"], think)
-                    if self.context["variable_memory"] and ret_data["var_name"] in self.context["variable_memory"]:
-                        new_context = {"error": "返回值使用的变量名与已有的变量名重复"}
-                        return False, "", "ServiceAgent", new_context
-                    if "variable_memory" not in new_context.keys():
-                        new_context["variable_memory"] = []
-                    new_context["variable_memory"].append(new_variable)
-                    args.update({ret_data["ret_name"]: new_variable})
-            action_module = action_config[command_name]["action_module"]
-            _, action_func = dynamic_import(action_module, command_name)
-            try:
-                code = action_func(args)
-                new_context["code"] = code
-            except Exception as e:
-                traceback.print_exc()
-                new_context = {"error": str(e)}
-                return False, "", "ServiceAgent", new_context
-
-            return True, code, "ExecutionAgent", new_context
-
-    def after_agent(self, success, result, message_to, context):
-        click.echo(success)
-        click.echo(result)
-        click.echo(message_to)
-        click.echo(json.dumps(context, indent=4, ensure_ascii=False, default=convert2dict))
-        # click.echo(click.style(json.dumps(self.context, indent=4, ensure_ascii=False, default=convert2dict), fg="green"))
-        # input()
-
-        if result == "ExecutionReflexion":
-            message = context["message"]
-            send_message(message_to, {"message_from": self.class_name}, message)
-            return
-
-        if context:
-            for key, value in context.items():
-                if key == "code":
-                    if self.context[key] is None:
-                        self.context[key] = []
-                    self.context[key].append(value)
-                elif key == "variable_memory":
-                    if self.context[key] is None:
-                        self.context[key] = []
-                    self.context[key].extend(value)
-                else:
-                    self.register(key, value)
-
-        if success:
-            if self.context["history_actions"]:
-                self.context["history_actions"].append(self.context["cur_action"])
-            else:
-                self.context["history_actions"] = [self.context["cur_action"]]
-            message = self.get_prompt("success_after_agent")
-            send_message(message_to, {"message_from": self.class_name}, message)
-        else:
-            if message_to == "ServiceAgent":
-                message = self.get_prompt("self_failed")
-                send_message(message_to, {"message_from": self.class_name}, message)
-            else:
-                message = self.get_prompt("execution_failed")
-                send_message(message_to, {"message_from": self.class_name}, message)
-
-    def find_variables(self, var_name):
-        if self.context["variable_memory"] is None:
-            return None
-        for variable in self.context["variable_memory"]:
-            if variable.name == var_name:
-                return variable
-        return None
-
+        self.log("assistant", code_content)
+        return results
 

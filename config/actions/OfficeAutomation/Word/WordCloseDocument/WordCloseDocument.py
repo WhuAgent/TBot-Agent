@@ -1,8 +1,8 @@
 import yaml
 
-from utils.function import function_args2str, function_rets2str
+from tbot.utils.function import function_args2str, function_rets2str
 
-config_path = "config/actions/OfficeAutomation/Word/WordCloseDocument/WordCloseDocument.yaml"
+config_path = "tbot/config/actions/OfficeAutomation/Word/WordCloseDocument/WordCloseDocument.yaml"
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
 
@@ -12,7 +12,7 @@ def decorate_args(args):
     return args
 
 
-def WordCloseDocument(args):
+def WordCloseDocument(args, vars):
     args = decorate_args(args)
     args_str = function_args2str(config, args)
     return f"WordCloseDocument({args_str})"
