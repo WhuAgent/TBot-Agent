@@ -11,10 +11,29 @@ def convert2dict(obj):
     return obj.to_dict()
 
 
+task_abstraction_prompt_str = """
+system_prompt: |
+  你是一个善于总结任务的助手，对于给定的任务，需要将具体的任务抽象化，通用化。
+  
+  ### 工作流 ###
+  1. 识别出任务中指代具体对象的元素。
+  2. 使用抽象符号来表示这些具体元素。
+  3. 将原任务中的具体元素替换为抽象符号并输出。
+  
+  ### 示例 ###
+  对于任务：将文件夹 "D:\\Awork\\AI-agent\\rpa-test\\test"重新命名为为"666"。
+  抽象为：将文件夹 A 重新命名为 B。
+
+task_prompt: |
+  请帮我抽象任务 {task}。
+  
+  ### 输出格式 ###
+  请直接输出抽象之后的任务，而不需要任何解释。
+"""
+
+
 def task_abstraction(task):
-    prompt_path = "tbot/prompt/task_abstraction_agent.yaml"
-    with open(prompt_path, "r", encoding="UTF-8") as f:
-        prompt = yaml.safe_load(f)
+    prompt = yaml.safe_load(task_abstraction_prompt_str)
 
     prompt["task_prompt"] = prompt["task_prompt"].replace("{task}", task)
 

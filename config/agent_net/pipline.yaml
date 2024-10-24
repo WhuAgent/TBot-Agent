@@ -9,8 +9,8 @@ task: ""
 
 # 为了完成任务的计划，通过调用 group 完成任务
 group_pipline:
-  - TBotGroup: "tbot/config/group/TBotGroup.yaml"
-  - CodeExecutionGroup: "tbot/config/group/CodeExecutionGroup.yaml"
+  - TBotGroup: "tbot/config/agent_net/group/TBotGroup.yaml"
+  - CodeExecutionGroup: "tbot/config/agent_net/group/CodeExecutionGroup.yaml"
 
 # 任务执行过程中的上下文信息（如返回值等），用于 group 之间的信息传递
 context:

@@ -10,7 +10,7 @@ task: ""
 
 # group 内包含的 agent
 agents:
-  - CodeExecutionAgent: "tbot/config/agent/CodeExecutionAgent.yaml"
+  - CodeExecutionAgent: "tbot/config/agent_net/agent/CodeExecutionAgent.yaml"
 # 信息流开始的 agent
 start_agent: CodeExecutionAgent
 end_agent: CodeExecutionAgent

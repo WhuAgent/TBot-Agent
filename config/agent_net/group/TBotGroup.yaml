@@ -10,9 +10,9 @@ task: ""
 
 # group 内包含的 agent
 agents:
-  - WordOperationAgent: "tbot/config/agent/WordOperationAgent.yaml"
-  # - ExcelOperationAgent: "tbot/config/agent/ExcelOperationAgent.yaml"
-  - ManagerAgent: "tbot/config/agent/ManagerAgent.yaml"
+  - WordOperationAgent: "tbot/config/agent_net/agent/WordOperationAgent.yaml"
+  # - ExcelOperationAgent: "tbot/config/agent_net/agent/ExcelOperationAgent.yaml"
+  - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent

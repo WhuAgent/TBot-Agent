@@ -6,7 +6,7 @@ from agent_network.pipeline.pipeline import Pipeline
 
 logger = Logger("tbot/log")
 
-config_path = "tbot/config/pipline.yaml"
+config_path = "tbot/config/agent_net/pipline.yaml"
 
 with open(config_path, "r", encoding="UTF-8") as f:
     config = yaml.safe_load(f)
