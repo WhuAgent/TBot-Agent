@@ -18,7 +18,7 @@ pip install git+https://github.com/WhuAgent/agent-network.git@a8ebbf0a1f3e2a72f3
 
 ## 项目运行
 
-在根目录下运行命令：
+首先将文件夹 `TBot-Agent` 改名为 `tbot`，接下来在根目录下运行命令：
 
 ```
 python -m tbot.main
