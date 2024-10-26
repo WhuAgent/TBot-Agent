@@ -84,7 +84,9 @@ class OperationAgent(BaseAgent):
             results[result["name"]] = deepcopy(kwargs.get(result["name"]))
 
         try:
-            prompt = f"当前需要进行的操作为：{kwargs['next_task']}\n\n内存中已存在的变量有：{json.dumps(kwargs['variables'], indent=4, ensure_ascii=False)}"
+            prompt = f"当前需要进行的操作为：{kwargs['next_task']}\n\n当前环境状态为："
+            for variable in kwargs["variables"]:
+                prompt = f"{prompt}\n{variable['think']}"
             if len(errors) > 0:
                 error_message = json.dumps(errors, indent=4, ensure_ascii=False)
                 prompt = f"{prompt}\n\n在之前的生成过程中，产生了如下错误: \n {error_message}\n\n 请注意修复！"
@@ -141,6 +143,16 @@ class WordOperationAgent(OperationAgent):
 
 
 class ExcelOperationAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
+class WordFileManageAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
+class WordTextContentAgent(OperationAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
 
