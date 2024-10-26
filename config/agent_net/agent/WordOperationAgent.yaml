@@ -58,6 +58,11 @@ services:
   - WordSelectAll
   - WordCopySelectTextContentCommnad
   - WordPasteSelectTextContentCommnad
+  - WordFontNameCommmand
+  - WordFontSize
+  - WordFontColor
+  - WordFontStyle
+  - WordFontAlignment
 
 # agent 的 prompt
 prompts:
