@@ -20,10 +20,14 @@ def run_task(task):
 
 
 if __name__ == "__main__":
-    context = dict()
-
-    run_task(
-        '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，'
-        '并将 origin.docx 中的所有内容复制到 res.docx 中')
+    # run_task(
+    #     '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，'
+    #     '并将 origin.docx 中的所有内容复制到 res.docx 中')
     
     # run_task("请帮我把 C:/Users/lornd/Desktop/TBot/origin.docx 中的内容复制一份到 C:/Users/lornd/Desktop/TBot/res.docx")
+    # # WordOpenDocument
+    # run_task("请帮我打开 C:/Users/1/Downloads/123.docx 文件")
+    # # WordSaveDocument
+    # run_task("请帮我打开 C:/Users/1/Downloads/123.docx 文件，输入234，并保存")
+    # WordSaveAsDocument
+    run_task("请帮我打开 C:/Users/1/Downloads/123.docx 文件，并另存为234.docx")

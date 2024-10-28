@@ -13,7 +13,7 @@ def decorate_args(args):
     file_path = convert2double_slash_path(args["file_path"])
     args["file_path"] = file_path
 
-    if args.get("word_object") is None:
+    if args.get("document") is None:
         raise Exception("命令 WordOpenDocument 包含一个返回值，表示打开的文档对象，请配置返回值变量名！")
 
     return args

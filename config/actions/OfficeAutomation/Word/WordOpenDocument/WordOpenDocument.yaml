@@ -9,6 +9,6 @@ args:
   continue_when_error: False
 
 rets:
-  word_object: Word1
+  document: Word1
 
 variables: []

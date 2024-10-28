@@ -1,4 +1,4 @@
-def WordSave(document, file_path):
+def WordSaveAs(document, file_path):
     """
     将 Word 文档另存到新的地址
     ---
