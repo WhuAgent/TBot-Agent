@@ -1,3 +1,5 @@
+name: WordReadDocument
+
 args:
   document: ""
   pre_delay: 0
