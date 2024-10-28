@@ -21,7 +21,6 @@ action_config = get_action_configs("tbot/config/actions")
 class ManagerAgent(BaseAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
-        self.initial_messages()
 
     def initial_messages(self):
         for prompt in self.config["prompts"]:
@@ -52,7 +51,6 @@ class ManagerAgent(BaseAgent):
 class OperationAgent(BaseAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
-        self.initial_messages()
 
     @staticmethod
     def add_service(prompt, services):
@@ -84,7 +82,11 @@ class OperationAgent(BaseAgent):
             results[result["name"]] = deepcopy(kwargs.get(result["name"]))
 
         try:
-            prompt = f"当前需要进行的操作为：{kwargs['next_task']}\n\n内存中已存在的变量有：{json.dumps(kwargs['variables'], indent=4, ensure_ascii=False)}"
+            prompt = f"当前需要进行的操作为：{kwargs['next_task']}\n\n当前已完成的操作有：\n"
+            prompt += f"{json.dumps(kwargs['completed_tasks'], indent=4, ensure_ascii=False)}"
+            prompt += "\n\n请决定接下来要调用的服务"
+            # for variable in kwargs["variables"]:
+            #     prompt = f"{prompt}\n{variable['think']}"
             if len(errors) > 0:
                 error_message = json.dumps(errors, indent=4, ensure_ascii=False)
                 prompt = f"{prompt}\n\n在之前的生成过程中，产生了如下错误: \n {error_message}\n\n 请注意修复！"
@@ -99,22 +101,21 @@ class OperationAgent(BaseAgent):
             for service in services:
                 service_name = service["name"]
                 args = service.get("args")
-                if servie_rets := service.get("rets"):
-                    for ret in servie_rets:
-                        if ret["var"] is None:
-                            continue
-                        args.update({ret["name"]: ret["var"]})
-                        if not OperationAgent.check_var_name(ret["var"], kwargs["variables"]):
-                            raise Exception("变量名和已有的变量重复")
-                        results["variables"].append({
-                            "name": ret["var"],
-                            "think": ret["think"]
-                        })
+                rets = service.get("rets", [])
+                for ret_var in rets:
+                    if ret_var in results["variables"]:
+                        raise Exception("变量名和已有的变量重复")
+                    results["variables"].append(ret_var)
+                args.update({"rets": rets})
                 service_module = action_config[service_name]["action_module"]
-                _, service_func = dynamic_import(service_module, service_name)
-                code = service_func(args, results["variables"])
-                results["code"].append(code)
-            results["completed_tasks"].append(kwargs["next_task"])
+                _, service = dynamic_import(service_module, service_name)
+                service = service(action_config[service_name]["config_path"])
+                success, result, message = service(args, results["variables"])
+                if success:
+                    results["code"].append(result)
+                    results["completed_tasks"].append(message)
+                else:
+                    raise Exception(message)
             results["error"] = ""
             results["next_agent"] = "ManagerAgent"
         except Exception as e:
@@ -124,8 +125,6 @@ class OperationAgent(BaseAgent):
                 error_message = "请确保要调用的服务 name 被正确设置"
             else:
                 error_message = str(e)
-                if "请配置返回值变量名" in error_message:
-                    error_message = "请确保 rets.name 与服务说明中的返回值名称相互对应, 如 word_object"
             errors.append(error_message)
             if len(errors) <= 5:
                 return self.forward("", errors, **kwargs)
@@ -151,6 +150,16 @@ class ExcelOperationAgent(OperationAgent):
         super().__init__(config, logger)
 
 
+class WordFileManageAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
+class WordTextContentAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
 class CodeExecutionAgent(BaseAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
@@ -164,8 +173,7 @@ class CodeExecutionAgent(BaseAgent):
         variables = kwargs.get("variables")
 
         lines = []
-        for variable in variables:
-            var_name = variable["name"]
+        for var_name in variables:
             lines.append(f'Dim {var_name} = \"\"')
         lines.append("\n")
 

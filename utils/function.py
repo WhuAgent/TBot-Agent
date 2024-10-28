@@ -4,7 +4,7 @@ import os
 
 def check_obj_defined(obj, vars):
     for variable in vars:
-        if obj == variable["name"]:
+        if obj == variable:
             return True
     return False
 
@@ -21,7 +21,7 @@ def function_args2str(config, args):
 
 
 def function_rets2str(config, args):
-    return ", ".join(f"{args.get(key, value)}" for key, value in config.get("rets").items())
+    return ", ".join(f"{args.get(key)}" for key in config.get("rets"))
 
 
 def dynamic_import(module_name, function_name):

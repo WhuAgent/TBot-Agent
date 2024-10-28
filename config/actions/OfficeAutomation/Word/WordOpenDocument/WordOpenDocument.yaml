@@ -1,3 +1,5 @@
+name: WordOpenDocument
+
 args:
   show_word: "是"
   file_path: ""
@@ -9,6 +11,6 @@ args:
   continue_when_error: False
 
 rets:
-  document: Word1
+  - word_object
 
 variables: []

@@ -54,12 +54,19 @@ def get_action_configs(action_config_path):
         for file in files:
             if file.endswith(".prompt"):
                 action_name = file[:-7]
+                
                 file_path = Path(os.path.join(root, file))
-                action_path = "/".join(file_path.parts)
+                # action_path = "/".join(file_path.parts)
+                
                 action_module = ".".join(file_path.parts)[:-7]
+                
+                action_config_file = action_name + ".yaml"
+                action_config_path = Path(os.path.join(root, action_config_file))
+                
                 action_configs.update({action_name: {
-                    "prompt_path": action_path,
-                    "action_module": action_module
+                    "prompt_path": file_path.as_posix(),
+                    "action_module": action_module,
+                    "config_path": action_config_path.as_posix()
                 }})
     return action_configs
 
