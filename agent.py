@@ -163,7 +163,6 @@ class WordTextContentAgent(OperationAgent):
 class CodeExecutionAgent(BaseAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
-        self.initial_messages()
 
     def initial_messages(self):
         pass
@@ -186,3 +185,13 @@ class CodeExecutionAgent(BaseAgent):
         self.log("assistant", code_content)
         return results
 
+
+class EndAgent(BaseAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+    def initial_messages(self):
+        pass
+
+    def forward(self, message, **kwargs):
+        return {"next_task": "COMPLETE"}

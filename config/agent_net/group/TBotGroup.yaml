@@ -14,6 +14,7 @@ agents:
   - WordTextContentAgent: "tbot/config/agent_net/agent/WordTextContentAgent.yaml"
   - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
+  - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
@@ -41,6 +42,9 @@ routes:
     type: "message"
   - source: "WordDocumentAgent"
     target: "ManagerAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "EndAgent"
     type: "message"
 
 block_flag:

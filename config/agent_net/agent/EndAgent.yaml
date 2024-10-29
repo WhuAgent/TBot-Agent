@@ -1,0 +1,48 @@
+# 对外暴露的 id，用于将 agent 引入 group
+ref_id: "EndAgent"
+
+# agent 的名称
+name: "EndAgent"
+# 对 agent 的详细描述
+description: "ManagerAgent规划结束之后，需要通过EndAgent来结束任务"
+# agent 角色扮演相关？
+role: ""
+# agent 要执行的任务
+task: ""
+# agent 加载模式
+load_type: "module"
+# agent 类的位置
+loadModule: "tbot.agent"
+loadClass: "EndAgent"
+
+# agent 是否需要与大模型进行交互
+need_chat: True
+model: "gpt-3.5-turbo"
+
+init_extra_params:
+
+# 执行上下文参数
+params: []
+
+# 执行上下文结果
+results:
+  - name: "next_task"
+    type: "str"
+
+tools:
+
+# agent 的 prompt
+prompts:
+
+# agent 需要的输入结构
+input_format: "format"
+
+# 其他的一些参数
+ifLeaf: True
+ifService: False
+ifKnowledgeable: True
+ifLearnable: False
+runtimeRevisionNumber: 1
+historyNumber: 0
+energy: 0
+
