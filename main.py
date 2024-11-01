@@ -22,7 +22,7 @@ def run_task(task):
 if __name__ == "__main__":
     context = dict()
 
-    task1 = '请帮我打开文档 "C:/Users/1206232012/Desktop/test.docx" ，插入一张图片，图片位置为 "C:/Users/1206232012/Desktop/家乡.jpg" '
+    task1 = '请帮我打开文档 "C:/Users/1206232012/Desktop/test.docx" ，插入一张图片，图片位置为 "C:/Users/1206232012/Desktop/家乡.jpg" 。不需要保存和关闭文档。'
 
     task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，\
             并将 origin.docx 中的所有内容复制到 res.docx 中'

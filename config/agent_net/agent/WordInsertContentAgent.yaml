@@ -87,10 +87,8 @@ prompts:
       - name: 要调用的服务的名称
         args: # 要调用的服务的参数
           arg_name: arg_value
-        rets: # 服务返回值的配置，是一个列表，每一项包括三个部分
-          - name: 文档中对应的返回值名称
-            var: 生成的代码中，返回值的英文变量名
-            think: 为返回值进行该命名的思考
+        rets: # 服务返回值的变量配置，变量名不能与已有的变量名重复
+          - ret_variable_name
       ###
 
 # agent 使用的工具

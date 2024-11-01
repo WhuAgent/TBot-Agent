@@ -4,5 +4,4 @@ args:
   file_path: ""
 
 variables:
-  - file_path
   - document
