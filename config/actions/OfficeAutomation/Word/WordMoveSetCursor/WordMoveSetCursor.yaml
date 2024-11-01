@@ -1,6 +1,11 @@
+name: WordMoveSetCursor
+
 args:
   document: ""
   move_num: 1
   move_type: 行
   move_direction: 下
   is_press_shift: 是
+
+variables:
+  - document

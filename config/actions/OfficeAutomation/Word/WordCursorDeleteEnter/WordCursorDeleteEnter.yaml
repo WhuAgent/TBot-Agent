@@ -1,2 +1,7 @@
+name: WordCursorDeleteEnter
+
 args:
   document: ""
+
+variables:
+  - document
