@@ -22,7 +22,7 @@ def run_task(task):
 if __name__ == "__main__":
     context = dict()
 
-    task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"。'
+    task1 = '请帮我打开文档 "C:/Users/1206232012/Desktop/test.docx" ，插入一张图片，图片位置为 "C:/Users/1206232012/Desktop/家乡.jpg" '
 
     task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，\
             并将 origin.docx 中的所有内容复制到 res.docx 中'
@@ -31,6 +31,6 @@ if __name__ == "__main__":
     #         分别通过剪切和复制的方式粘贴到第三个文档 "C:/Users/lornd/Desktop/TBot/res.docx" 中。\
     #         在进行剪切、复制等操作前，请注意要先打开文档。'
 
-    run_task(task)
+    run_task(task1)
     
     # run_task("请帮我把 C:/Users/lornd/Desktop/TBot/origin.docx 中的内容复制一份到 C:/Users/lornd/Desktop/TBot/res.docx")

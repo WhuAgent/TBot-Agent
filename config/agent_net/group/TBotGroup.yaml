@@ -13,6 +13,7 @@ agents:
   - WordFileManageAgent: "tbot/config/agent_net/agent/WordFileManageAgent.yaml"
   - WordTextContentAgent: "tbot/config/agent_net/agent/WordTextContentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
+  - WordInsertContentAgent: "tbot/config/agent_net/agent/WordInsertContentAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
@@ -33,6 +34,12 @@ routes:
     target: "ManagerAgent"
     type: "message"
 
+  - source: "WordInsertContentAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "WordInsertContentAgent"
+    type: "message"
 block_flag:
 
 # 执行上下文参数
