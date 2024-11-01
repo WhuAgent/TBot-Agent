@@ -11,10 +11,7 @@ class WordAppendImage(BaseService):
 
     def forward(self, args, vars):
         file_path = convert2double_slash_path(args["file_path"])
-        if os.path.isfile(file_path):
-            args["file_path"] = file_path
-        else:
-            raise TypeError(f"要插入的图片不存在，请检查文件路径{file_path}是否正确")
+        args["file_path"] = file_path
         document=args.get("document", None)
         if document is None or not check_obj_defined(document, vars):
             raise TypeError("输入的文档对象应当为一个已定义的对象变量，请确保先打开了一个文档，并且使用内存中已经定义的变量名")
