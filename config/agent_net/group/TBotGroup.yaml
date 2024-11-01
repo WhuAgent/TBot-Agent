@@ -16,7 +16,6 @@ agents:
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
-end_agent: ManagerAgent
 
 # 路由
 routes:
@@ -26,6 +25,9 @@ routes:
   - source: "ManagerAgent"
     target: "WordTextContentAgent"
     type: "message"
+  - source: "ManagerAgent"
+    target: "CodeExecutionGroup"
+    type: "message"
   - source: "WordFileManageAgent"
     target: "ManagerAgent"
     type: "message"
@@ -33,7 +35,8 @@ routes:
     target: "ManagerAgent"
     type: "message"
 
-block_flag:
+# 最大执行步数
+max_step: 100
 
 # 执行上下文参数
 params:
