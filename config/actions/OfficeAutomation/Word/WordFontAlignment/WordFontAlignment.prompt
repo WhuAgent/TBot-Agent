@@ -1,6 +1,6 @@
-def WordFontAlignment(document):
+def WordFontAlignment(document, method):
     """
-    设置文档选中区域的对齐方式
+    设置文档选中区域文字的对齐方式
     ---
     参数:
         document: 要操作的文档对象

@@ -154,6 +154,11 @@ class WordTextContentAgent(OperationAgent):
         super().__init__(config, logger)
 
 
+class WordFontSetAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
+
 class CodeExecutionAgent(BaseAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
