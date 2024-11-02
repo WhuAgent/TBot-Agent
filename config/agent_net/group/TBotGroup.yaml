@@ -12,7 +12,9 @@ task: ""
 agents:
   - WordFileManageAgent: "tbot/config/agent_net/agent/WordFileManageAgent.yaml"
   - WordTextContentAgent: "tbot/config/agent_net/agent/WordTextContentAgent.yaml"
+  - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
+  - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
@@ -33,6 +35,18 @@ routes:
     type: "message"
   - source: "WordTextContentAgent"
     target: "ManagerAgent"
+    type: "message"
+  # - source: "ExcelOperationAgent"
+  #   target: "ManagerAgent"
+  #   type: "message"
+  - source: "ManagerAgent"
+    target: "WordDocumentAgent"
+    type: "message"
+  - source: "WordDocumentAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "EndAgent"
     type: "message"
 
 # 最大执行步数

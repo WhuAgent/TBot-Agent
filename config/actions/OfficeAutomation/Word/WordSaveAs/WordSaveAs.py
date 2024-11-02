@@ -1,22 +1,24 @@
 import yaml
 
-from utils.function import function_args2str, function_rets2str
-from utils.function import convert2double_slash_path
+from tbot.services import BaseService
+from tbot.utils.function import function_args2str, function_rets2str, check_obj_defined, convert2double_slash_path
 
-config_path = "config/actions/OfficeAutomation/Word/WordSaveAs/WordSaveAs.yaml"
-with open(config_path, "r", encoding="UTF-8") as f:
-    config = yaml.safe_load(f)
+class WordSaveAs(BaseService):
+    def __init__(self, config_path):
+        super().__init__(config_path)
 
+    def forward(self, args, vars):
+        document = args.get("document", None)
+        file_path = args.get("file_path", None)
 
-def decorate_args(args):
-    # 在这里写下每个命令参数的特殊处理
-    file_path = convert2double_slash_path(args["file_path"])
-    args["file_path"] = f'\"{file_path}\"'
-    return args
+        if file_path is None:
+            raise TypeError("需要另存为的文件路径不存在，请输入文件路径")
+        file_path = convert2double_slash_path(file_path)
+        if document is None or not check_obj_defined(document, vars):
+            raise TypeError("需要另存为的文档对象应当为一个已打开的文档对象，请确保该文档已经被打开")
 
+        args_str = function_args2str(self.config, args)
 
-def WordSaveAs(args):
-    args = decorate_args(args)
-    args_str = function_args2str(config, args)
-    rets_str = function_rets2str(config, args)
-    return f"{rets_str} = WordSaveAs({args_str})"
+        result = f"WordSaveAs({args_str})"
+        message = f"成功另存为文档 {document} 文件路径为 {file_path}"
+        return result, message

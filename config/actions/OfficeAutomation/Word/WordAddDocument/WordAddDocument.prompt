@@ -1,6 +1,6 @@
 def WordAddDocument(document):
     """
-    不知道这有什么用
+    在 Word 中新建一个空白文档
     ---
     参数:
         document: 要操作的文档对象

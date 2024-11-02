@@ -1,5 +1,4 @@
 import os
-from idlelib.iomenu import encoding
 
 
 class Logger:
