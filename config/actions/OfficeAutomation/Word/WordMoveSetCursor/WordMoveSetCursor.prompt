@@ -1,6 +1,6 @@
 WordMoveSetCursor(document, move_num, move_type, move_direction, is_press_shift):
     """
-    在文档中移动光标位置到指定位置
+    在word文档中按行、字符或段落进行光标的上下左右移动，并可选择是否按住shift键选中途径的文本。
     ---
     参数：
         document: 要操作的文档对象

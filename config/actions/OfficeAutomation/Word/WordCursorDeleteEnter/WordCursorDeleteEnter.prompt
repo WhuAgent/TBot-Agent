@@ -1,6 +1,6 @@
 def WordCursorDeleteEnter(document):
     """
-    在文档中被选中的区域删除一个字符
+    输入退格键删除选中文本
     ---
     参数:
         document: 要操作的文档对象

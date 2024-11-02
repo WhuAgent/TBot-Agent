@@ -1,2 +1,7 @@
+name: WordCursorInsertEnter
+
 args:
   document: ""
+
+variables:
+  - document

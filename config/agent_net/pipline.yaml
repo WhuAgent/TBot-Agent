@@ -12,6 +12,8 @@ group_pipline:
   - TBotGroup: "tbot/config/agent_net/group/TBotGroup.yaml"
   - CodeExecutionGroup: "tbot/config/agent_net/group/CodeExecutionGroup.yaml"
 
+start_node: "TBotGroup"
+
 # 任务执行过程中的上下文信息（如返回值等），用于 group 之间的信息传递
 context:
   - name: "task"
@@ -22,5 +24,5 @@ context:
     type: "list"
   - name: "completed_tasks"
     type: "list"
-  - name: "error"
+  - name: "error_message"
     type: "str"

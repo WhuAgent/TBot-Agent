@@ -1,5 +1,10 @@
+name: WordFontStyle
+
 args:
   document: ""
   bold: ""
   italic: ""
   underline: ""
+
+variables:
+  - document

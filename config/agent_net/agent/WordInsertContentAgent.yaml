@@ -1,10 +1,10 @@
 # 对外暴露的 id，用于将 agent 引入 group
-ref_id: "WordOperationAgent"
+ref_id: "WordInsertContentAgent"
 
 # agent 的名称
-name: "WordOperationAgent"
+name: "WordInsertContentAgent"
 # 对 agent 的详细描述
-description: "可以进行 Word 上的基础操作，如打开、保存、关闭文档，进行内容的输入、复制和粘贴等"
+description: "负责对选中的 Word 文档插入特定内容，包括图片，分页符，回车"
 # agent 角色扮演相关？
 role: ""
 # agent 要执行的任务
@@ -13,13 +13,13 @@ task: ""
 load_type: "module"
 # agent 类的位置
 loadModule: "tbot.agent"
-loadClass: "WordOperationAgent"
+loadClass: "WordInsertContentAgent"
 
 # 组内通信配置
 # 其实好像不需要配置，因为目前实现的方式是 name + Exchange
 communication:
-  exchange: "WordOperationAgentExchange"
-  queue: "WordOperationAgent"
+  exchange: "WordInsertContentAgentExchange"
+  queue: "WordInsertContentAgent"
 
 # agent 是否需要与大模型进行交互
 need_chat: True
@@ -52,12 +52,9 @@ results:
     type: "str"
 
 services:
-  - WordOpenDocument
-  - WordSave
-  - WordCloseDocument
-  - WordSelectAll
-  - WordCopySelectTextContentCommnad
-  - WordPasteSelectTextContentCommnad
+  - WordCursorInsertEnter
+  - WordInsertPage
+  - WordAppendImage
 
 # agent 的 prompt
 prompts:
@@ -65,10 +62,10 @@ prompts:
     role: "system"
     content: |
       ### 角色 ###
-       你是一位专业的文档处理专家，拥有丰富的 Word 文档操作经验和良好的沟通能力，能够与同组的其他 Agent 合作完成任务。
+       你是一位专业的文档处理专家，熟练掌握向 word 文档插入内容并拥有良好的沟通能力，能够与同组的其他 Agent 合作完成任务。
       
       ### 技能 ###
-      你具备调用服务操作 Word 文档的能力，可调用的服务如下，以代码形式给出：
+      你具备调用服务向 word 文档插入内容的能力，可调用的服务如下，以代码形式给出：
       
       {services}
           
@@ -80,8 +77,15 @@ prompts:
       
       1. 理解用户要求和任务目标。
       2. 根据当前的操作环境状态，决定需要调用的服务。
-      3. 调用该服务推进任务流程。
-      4. 反馈信息。
+      3. 查阅该服务的详细描述，明确该服务的参数和返回值。
+      4. 按照格式生成对服务的调用，其中，每个参数都需要指定参数值；每个返回值需要指定储存返回值的变量名。
+
+      ### 注意事项 ###
+      在命名返回值变量时，请遵循以下规则：
+      1. 使用小写字母和下划线。
+      2. 变量名应尽可能反映文档的内容或任务的上下文。
+      3. 如果任务涉及特定的文件名或文档内容，请在变量名中包含这些信息。
+      4. 请根据任务的具体场景灵活调整命名规则。
       
       ### 返回方式 ###
       以 yaml 格式返回，使用 ### 开始，以 ### 结束，中间为 yaml 内容。内容为一个列表，列表的每一项包括三个部分：
@@ -90,23 +94,24 @@ prompts:
       - name: 要调用的服务的名称
         args: # 要调用的服务的参数
           arg_name: arg_value
-        rets: # 服务返回值的配置，是一个列表，每一项包括三个部分
-          - name: 文档中对应的返回值名称
-            var: 生成的代码中，返回值的英文变量名
-            think: 为返回值进行该命名的思考
+        rets: # 服务返回值的变量配置，变量名不能与已有的变量名重复
+          - ret_variable_name
       ###
 
 # agent 使用的工具
+# TODO 不知道有哪些工具，需要调用哪些工具
 tools:
   - type: "VDB"
     name: "VDB1"
 
 # agent 需要的输入结构
+# TODO 暂时不知道这个值是什么意思
 input_format: "format"
 
 # agent 的下游 agent
+# TODO 如何决定下游agent
 children:
-  - input_content_agent
+  - ManagerAgent
 
 # 其他的一些参数
 ifLeaf: True
@@ -116,4 +121,3 @@ ifLearnable: False
 runtimeRevisionNumber: 1
 historyNumber: 0
 energy: 0
-
