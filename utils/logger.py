@@ -2,12 +2,14 @@ import os
 
 
 class Logger:
-    def __init__(self, root):
+    def __init__(self, root, file_name: str):
         if not os.path.exists(root):
             os.makedirs(root)
         self.root = root
 
-        self.file_name = f"all.log"
+        if not file_name.endswith(".log"):
+            file_name += ".log"
+        self.file_name = f"{file_name}"
         self.file_path = os.path.join(self.root, self.file_name)
 
         with open(self.file_path, "w", encoding="UTF-8") as f:

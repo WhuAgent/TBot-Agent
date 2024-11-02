@@ -42,7 +42,7 @@ results:
     type: "list"
   - name: "next_agent"
     type: "str"
-  - name: "error"
+  - name: "error_message"
     type: "str"
 
 services:
