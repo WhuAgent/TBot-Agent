@@ -50,6 +50,10 @@ services:
   - WordSelectAll
   - WordCopySelectTextContentCommnad
   - WordPasteSelectTextContentCommnad
+  - WorldOverReadDocument
+  - WordReadSelect
+  - WordAppendText
+  - WordReplaceText
 
 # agent 的 prompt
 prompts:
