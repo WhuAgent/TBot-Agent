@@ -1,4 +1,9 @@
+name: WorkSelectTextContentPosition
+
 args:
   document: ""
   content: ""
   curse_position: 光标在文本之后
+
+variables:
+  - document

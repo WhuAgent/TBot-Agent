@@ -6,4 +6,6 @@ def WordSelectLine(document, start_line, end_line):
         document: 要操作的文档对象
         start_line: 选中文档中的起始行
         end_line: 选中文档中的结尾行
+    返回值：
+        无返回值
     """

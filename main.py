@@ -24,6 +24,16 @@ def run_task(task):
 
 if __name__ == "__main__":
     context = dict()
+
+    # task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"。'
+
+    # task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，\
+    #         并将 origin.docx 中的所有内容复制到 res.docx 中'
+    task ='请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"，\
+    打开文档后，将光标向下移动两行并选中途径文本，\
+    查找“测试” 并选中，\
+    选中第二行到第三行，\
+    删除选中文本'
     
     task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"。'
 

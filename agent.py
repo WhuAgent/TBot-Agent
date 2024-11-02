@@ -155,6 +155,10 @@ class WordOperationAgent(OperationAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
 
+class WordMouseKeyboardAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
+
 
 class WordDocumentAgent(OperationAgent):
     def __init__(self, config, logger):

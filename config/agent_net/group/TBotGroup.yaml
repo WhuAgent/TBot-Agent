@@ -15,6 +15,7 @@ agents:
   - WordFontSetAgent: "tbot/config/agent_net/agent/WordFontSetAgent.yaml"
   - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
+  - WordMouseKeyboardAgent: "tbot/config/agent_net/agent/WordMouseKeyboardAgent.yaml"
   - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
 # 信息流开始的 agent
@@ -29,6 +30,9 @@ routes:
     target: "WordTextContentAgent"
     type: "message"
   - source: "ManagerAgent"
+    target: "WordMouseKeyboardAgent"
+    type: "message"
+  - source: "ManagerAgent"
     target: "WordFontSetAgent"
     type: "message"
   - source："ManagerAgent"
@@ -38,6 +42,9 @@ routes:
     target: "ManagerAgent"
     type: "message"
   - source: "WordTextContentAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "WordMouseKeyboardAgent"
     target: "ManagerAgent"
     type: "message"
   - source: "WordFontSetAgent"
