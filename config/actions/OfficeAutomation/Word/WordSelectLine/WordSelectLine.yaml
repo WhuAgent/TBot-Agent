@@ -1,4 +1,9 @@
+name: WordSelectLine
+
 args:
   document: ""
   start_line: 1
   end_line: 1
+
+variables:
+  - document

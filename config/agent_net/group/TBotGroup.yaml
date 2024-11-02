@@ -12,12 +12,15 @@ task: ""
 agents:
   - WordFileManageAgent: "tbot/config/agent_net/agent/WordFileManageAgent.yaml"
   - WordTextContentAgent: "tbot/config/agent_net/agent/WordTextContentAgent.yaml"
+  - WordFontSetAgent: "tbot/config/agent_net/agent/WordFontSetAgent.yaml"
+  - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
   - WordInsertContentAgent: "tbot/config/agent_net/agent/WordInsertContentAgent.yaml"
+  - WordMouseKeyboardAgent: "tbot/config/agent_net/agent/WordMouseKeyboardAgent.yaml"
+  - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
-end_agent: ManagerAgent
 
 # 路由
 routes:
@@ -27,20 +30,48 @@ routes:
   - source: "ManagerAgent"
     target: "WordTextContentAgent"
     type: "message"
+  - source: "ManagerAgent"
+    target: "WordMouseKeyboardAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "WordFontSetAgent"
+    type: "message"
+  - source："ManagerAgent"
+    target: "CodeExecutionGroup"
+    type: "message"
   - source: "WordFileManageAgent"
     target: "ManagerAgent"
     type: "message"
   - source: "WordTextContentAgent"
     target: "ManagerAgent"
     type: "message"
-
+  - source: "WordMouseKeyboardAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "WordFontSetAgent"
+    target: "ManagerAgent"
+    type: "message"
+  # - source: "ExcelOperationAgent"
+  #   target: "ManagerAgent"
+  #   type: "message"
+  - source: "ManagerAgent"
+    target: "WordDocumentAgent"
+    type: "message"
+  - source: "WordDocumentAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "EndAgent"
+    type: "message"
   - source: "WordInsertContentAgent"
     target: "ManagerAgent"
     type: "message"
   - source: "ManagerAgent"
     target: "WordInsertContentAgent"
     type: "message"
-block_flag:
+
+# 最大执行步数
+max_step: 100
 
 # 执行上下文参数
 params:

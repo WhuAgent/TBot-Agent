@@ -4,7 +4,7 @@ ref_id: "CodeExecutionGroup"
 # group 名称
 name: "CodeExecutionGroup"
 # 对 group 的详细描述
-description: "执行生成的代码"
+description: "执行完整生成的代码，应当为完成任务的最后一步"
 # group 要完成的任务
 task: ""
 
@@ -18,9 +18,8 @@ end_agent: CodeExecutionAgent
 # 路由
 routes:
 
-# 阻塞标记
-block_flag:
-  - "TBotGroup"
+# 最大执行步数
+max_step: 100
 
 # 执行上下文参数
 params:

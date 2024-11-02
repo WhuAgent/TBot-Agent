@@ -1,10 +1,10 @@
 # 对外暴露的 id，用于将 agent 引入 group
-ref_id: "WordFileManageAgent"
+ref_id: "WordFontSetAgent"
 
 # agent 的名称
-name: "WordFileManageAgent"
+name: "WordFontSetAgent"
 # 对 agent 的详细描述
-description: "负责对 word 的文件进行管理，打开关闭文档，保存文档，将文档输出为 PDF 等"
+description: "负责 word 中的文字的属性的设置"
 # agent 角色扮演相关？
 role: ""
 # agent 要执行的任务
@@ -13,7 +13,7 @@ task: ""
 load_type: "module"
 # agent 类的位置
 loadModule: "tbot.agent"
-loadClass: "WordFileManageAgent"
+loadClass: "WordFontSetAgent"
 
 # agent 是否需要与大模型进行交互
 need_chat: True
@@ -42,13 +42,15 @@ results:
     type: "list"
   - name: "next_agent"
     type: "str"
-  - name: "error_message"
+  - name: "error"
     type: "str"
 
 services:
-  - WordOpenDocument
-  - WordSave
-  - WordCloseDocument
+  - WordFontAlignment
+  - WordFontColor
+  - WordFontNameCommmand
+  - WordFontSize
+  - WordFontStyle
 
 # agent 的 prompt
 prompts:
@@ -92,6 +94,7 @@ prompts:
         rets: # 服务返回值的变量配置，变量名不能与已有的变量名重复
           - ret_variable_name
       ###
+
 
 # agent 使用的工具
 tools:

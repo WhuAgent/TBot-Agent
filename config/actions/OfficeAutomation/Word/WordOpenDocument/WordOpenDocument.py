@@ -11,7 +11,7 @@ class WordOpenDocument(BaseService):
         super().__init__(config_path)
 
     def forward(self, args, vars):
-        
+
         args["file_path"] = convert2double_slash_path(args["file_path"])
 
         if args.get("word_object") is None:
@@ -19,7 +19,7 @@ class WordOpenDocument(BaseService):
 
         args_str = function_args2str(self.config, args)
         rets_str = function_rets2str(self.config, args)
-        
+
         result = f"{rets_str} = WordOpenDocument({args_str})"
         message = f"成功打开文档 {args['file_path']}，其文档对象被储存为 {args['word_object']}。"
         return result, message
