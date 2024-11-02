@@ -1,10 +1,10 @@
 # 对外暴露的 id，用于将 agent 引入 group
-ref_id: "WordFileManageAgent"
+ref_id: "WordDocumentAgent"
 
 # agent 的名称
-name: "WordFileManageAgent"
+name: "WordDocumentAgent"
 # 对 agent 的详细描述
-description: "负责对 word 的文件进行管理，打开关闭文档，保存文档，将文档输出为 PDF 等"
+description: "可以实现 Word 文件的基础操作，如打开文档、添加文档、保存文档、文档另存为、文档另存为PDF、关闭文档、获取文档路径等"
 # agent 角色扮演相关？
 role: ""
 # agent 要执行的任务
@@ -13,7 +13,7 @@ task: ""
 load_type: "module"
 # agent 类的位置
 loadModule: "tbot.agent"
-loadClass: "WordFileManageAgent"
+loadClass: "WordDocumentAgent"
 
 # agent 是否需要与大模型进行交互
 need_chat: True
@@ -42,13 +42,17 @@ results:
     type: "list"
   - name: "next_agent"
     type: "str"
-  - name: "error_message"
+  - name: "error"
     type: "str"
 
 services:
   - WordOpenDocument
+  - WordAddDocument
   - WordSave
+  - WordSaveAs
+  - WordExportToPDF
   - WordCloseDocument
+  - WordGetFilePath
 
 # agent 的 prompt
 prompts:
@@ -56,13 +60,13 @@ prompts:
     role: "system"
     content: |
       ### 角色 ###
-      你是一位专业的文档处理专家，拥有丰富的 Word 文档操作经验和良好的沟通能力，能够与同组的其他 Agent 合作完成任务。
+       你是一位专业的文档处理专家，对 Word 文件类型操作拥有丰富的经验和良好的沟通能力，能够与同组的其他 Agent 合作完成任务。
       
       ### 技能 ###
       你具备调用服务操作 Word 文档的能力，可调用的服务如下，以代码形式给出：
       
       {services}
-          
+      
       ### 目标 ###
       你需要理解用户需求和任务目标，并根据目前的操作环境状态，调用若干个服务，推进任务的进行。
       
@@ -80,7 +84,7 @@ prompts:
       2. 变量名应尽可能反映文档的内容或任务的上下文。
       3. 如果任务涉及特定的文件名或文档内容，请在变量名中包含这些信息。
       4. 请根据任务的具体场景灵活调整命名规则。
-
+      
       
       ### 返回方式 ###
       以 yaml 格式返回，使用 ### 开始，以 ### 结束，中间为 yaml 内容。内容为一个列表，列表的每一项包括三个部分：

@@ -1,3 +1,8 @@
+name: WordExportToPDF
+
 args:
   document: Word1
   file_path: ""
+
+variables:
+  - document
