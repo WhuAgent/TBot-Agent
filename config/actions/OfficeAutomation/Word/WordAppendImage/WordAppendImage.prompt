@@ -1,9 +1,10 @@
-def WordAppendImage(file_path):
+def WordAppendImage(document,file_path):
     """
     在文档被选中的区域插入图片
     ---
     参数：
-        file_path: 指定的图片文件路径
+        document: 指定的文档对象，注意不是文档路径
+        file_path: 指定的图片文件路径，不需要 " 符号
     返回值：
         无返回值
     """

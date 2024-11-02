@@ -174,6 +174,9 @@ class WordFileManageAgent(OperationAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
 
+class WordInsertContentAgent(OperationAgent):
+    def __init__(self, config, logger):
+        super().__init__(config, logger)
 
 class WordTextContentAgent(OperationAgent):
     def __init__(self, config, logger):

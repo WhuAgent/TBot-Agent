@@ -15,6 +15,7 @@ agents:
   - WordFontSetAgent: "tbot/config/agent_net/agent/WordFontSetAgent.yaml"
   - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
   - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
+  - WordInsertContentAgent: "tbot/config/agent_net/agent/WordInsertContentAgent.yaml"
   - WordMouseKeyboardAgent: "tbot/config/agent_net/agent/WordMouseKeyboardAgent.yaml"
   - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
@@ -61,6 +62,12 @@ routes:
     type: "message"
   - source: "ManagerAgent"
     target: "EndAgent"
+    type: "message"
+  - source: "WordInsertContentAgent"
+    target: "ManagerAgent"
+    type: "message"
+  - source: "ManagerAgent"
+    target: "WordInsertContentAgent"
     type: "message"
 
 # 最大执行步数
