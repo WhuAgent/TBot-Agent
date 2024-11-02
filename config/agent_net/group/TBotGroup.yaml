@@ -10,14 +10,12 @@ task: ""
 
 # group 内包含的 agent
 agents:
+  - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
   - WordFileManageAgent: "tbot/config/agent_net/agent/WordFileManageAgent.yaml"
   - WordTextContentAgent: "tbot/config/agent_net/agent/WordTextContentAgent.yaml"
   - WordFontSetAgent: "tbot/config/agent_net/agent/WordFontSetAgent.yaml"
-  - WordDocumentAgent: "tbot/config/agent_net/agent/WordDocumentAgent.yaml"
-  - ManagerAgent: "tbot/config/agent_net/agent/ManagerAgent.yaml"
   - WordInsertContentAgent: "tbot/config/agent_net/agent/WordInsertContentAgent.yaml"
   - WordMouseKeyboardAgent: "tbot/config/agent_net/agent/WordMouseKeyboardAgent.yaml"
-  - EndAgent: "tbot/config/agent_net/agent/EndAgent.yaml"
 
 # 信息流开始的 agent
 start_agent: ManagerAgent
@@ -36,7 +34,7 @@ routes:
   - source: "ManagerAgent"
     target: "WordFontSetAgent"
     type: "message"
-  - source："ManagerAgent"
+  - source: "ManagerAgent"
     target: "CodeExecutionGroup"
     type: "message"
   - source: "WordFileManageAgent"
@@ -50,18 +48,6 @@ routes:
     type: "message"
   - source: "WordFontSetAgent"
     target: "ManagerAgent"
-    type: "message"
-  # - source: "ExcelOperationAgent"
-  #   target: "ManagerAgent"
-  #   type: "message"
-  - source: "ManagerAgent"
-    target: "WordDocumentAgent"
-    type: "message"
-  - source: "WordDocumentAgent"
-    target: "ManagerAgent"
-    type: "message"
-  - source: "ManagerAgent"
-    target: "EndAgent"
     type: "message"
   - source: "WordInsertContentAgent"
     target: "ManagerAgent"

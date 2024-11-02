@@ -151,21 +151,7 @@ class OperationAgent(BaseAgent):
         return results
 
 
-class WordOperationAgent(OperationAgent):
-    def __init__(self, config, logger):
-        super().__init__(config, logger)
-
 class WordMouseKeyboardAgent(OperationAgent):
-    def __init__(self, config, logger):
-        super().__init__(config, logger)
-
-
-class WordDocumentAgent(OperationAgent):
-    def __init__(self, config, logger):
-        super().__init__(config, logger)
-
-
-class ExcelOperationAgent(OperationAgent):
     def __init__(self, config, logger):
         super().__init__(config, logger)
 
@@ -212,14 +198,3 @@ class CodeExecutionAgent(BaseAgent):
         }
         self.log("assistant", code_content)
         return results
-
-
-class EndAgent(BaseAgent):
-    def __init__(self, config, logger):
-        super().__init__(config, logger)
-
-    def initial_messages(self):
-        pass
-
-    def forward(self, message, **kwargs):
-        return {"next_task": "COMPLETE"}

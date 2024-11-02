@@ -4,7 +4,7 @@ ref_id: "WordFileManageAgent"
 # agent 的名称
 name: "WordFileManageAgent"
 # 对 agent 的详细描述
-description: "负责对 word 的文件进行管理，打开关闭文档，保存文档，将文档输出为 PDF 等"
+description: "可以实现 Word 文件的基础操作，如打开文档、添加文档、保存文档、文档另存为、文档另存为PDF、关闭文档、获取文档路径等"
 # agent 角色扮演相关？
 role: ""
 # agent 要执行的任务
@@ -47,8 +47,12 @@ results:
 
 services:
   - WordOpenDocument
+  - WordAddDocument
   - WordSave
+  - WordSaveAs
+  - WordExportToPDF
   - WordCloseDocument
+  - WordGetFilePath
 
 # agent 的 prompt
 prompts:

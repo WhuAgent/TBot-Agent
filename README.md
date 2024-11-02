@@ -7,7 +7,7 @@ Python 版本：`python = 3.10` 。
 对于 `agent-network` 库，请使用以下命令进行安装：
 
 ```
-pip install git+https://github.com/WhuAgent/agent-network.git@a8ebbf0a1f3e2a72f33b008d02b5123f0beea0ef
+pip install git+https://github.com/WhuAgent/agent-network.git@912ec6817411253270cbdba15e9a0c26dbf7f845
 ```
 
 ## 配置文件说明
