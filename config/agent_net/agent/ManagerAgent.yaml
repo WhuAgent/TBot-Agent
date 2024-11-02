@@ -31,7 +31,7 @@ init_extra_params:
 params:
   - name: "task"
     type: "str"
-  - name: "error"
+  - name: "error_message"
     type: "str"
   - name: "completed_tasks"
     type: "list"
