@@ -1,3 +1,8 @@
+name: WordFontColor
+
 args:
   document: ""
   color: ""
+
+variables:
+  - document
