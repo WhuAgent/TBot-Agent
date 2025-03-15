@@ -1,29 +1,36 @@
-import yaml
-from datetime import datetime
+import json
 
-from tbot.utils.logger import Logger
-from agent_network.network.graph import Graph, GraphStart
-from agent_network.network.route import Route
-from agent_network.pipeline.pipeline import Pipeline
+from agent_network.graph.graph import Graph
+from agent_network.constant import network, logger
 
-now = datetime.now().strftime("%Y-%m-%d %H%M%S")
-logger = Logger("tbot/log", now)
-
-config_path = "tbot/config/agent_net/pipline.yaml"
-
-with open(config_path, "r", encoding="UTF-8") as f:
-    config = yaml.safe_load(f)
-
-
-def run_task(task):
-    pipeline = Pipeline(task, config, logger)
-    graph = Graph("graph", task, "a graph", config["start_node"], None, None)
-    route = Route()
-    pipeline.execute(graph, route, task)
+def run_task(context):
+    assert context['flowId'] is not None, "智能体流程节点未找到"
+    assert context['task'] is not None, "智能体任务未找到"
+    
+    graph = Graph(logger)
+    graph.execute(network, context['flowId'], context['params'], context["results"])
+    result = graph.retrieve_results(context["results"])
+    graph.release()
+    print(json.dumps(result, indent=4, ensure_ascii=False))
 
 
 if __name__ == "__main__":
-    context = dict()
+    file_path = "C:\\Users\\lornd\\Downloads\\FC804E96CF497636909FC43BE21_07186CAC_E21D4.jpg"
+    task = f"学校发了一个新的讲座通知，相关文件在 {file_path}，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
+    
+    context = {
+        "flowId": "worker",
+        "task": task,
+        "params": {
+            "task": task,
+            "file_path": file_path,
+        },
+        "results": {
+            "result": "讲座相关信息"
+        }
+    }
+    
+    run_task(context)
 
     # task = '请帮我打开文档 "C:/Users/1206232012/Desktop/test.docx" ，插入一张图片，图片位置为 "C:/Users/1206232012/Desktop/家乡.jpg" 。不需要保存和关闭文档。'
     # task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"。'
@@ -41,13 +48,12 @@ if __name__ == "__main__":
     # task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx" 和文档 "C:/Users/lornd/Desktop/TBot/res.docx"，\
     #         并将 origin.docx 中的所有内容复制到 res.docx 中'
     
-    task = "请帮我把 C:/Users/lornd/Desktop/TBot/origin.docx 中的内容复制一份到 C:/Users/lornd/Desktop/TBot/res.docx"
+    # task = "请帮我把 C:/Users/lornd/Desktop/TBot/origin.docx 中的内容复制一份到 C:/Users/lornd/Desktop/TBot/res.docx"
 
     # task = '请帮把文档 "C:/Users/lornd/Desktop/TBot/1.docx" 和文档 "C:/Users/lornd/Desktop/TBot/2.docx" 中的内容 \
     #         分别通过剪切和复制的方式粘贴到第三个文档 "C:/Users/lornd/Desktop/TBot/res.docx" 中。\
     #         在进行剪切、复制等操作前，请注意要先打开文档。'
     #
-    run_task(task)
     
     # run_task("请帮我把 C:/Users/lornd/Desktop/TBot/origin.docx 中的内容复制一份到 C:/Users/lornd/Desktop/TBot/res.docx")
 
