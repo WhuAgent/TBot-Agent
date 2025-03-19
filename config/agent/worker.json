@@ -1,6 +1,6 @@
 {
     "id": "worker",
-    "description": "智能体员工",
+    "description": "根据用户需求决定调用 OCR 工具与解析 OCR 工具返回结果",
     "title": "worker",
     "keywords": [
         "智能体",

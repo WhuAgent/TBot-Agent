@@ -4,29 +4,22 @@ from agent_network.graph.graph import Graph
 from agent_network.constant import network, logger
 
 def run_task(context):
-    assert context['flowId'] is not None, "智能体流程节点未找到"
     assert context['task'] is not None, "智能体任务未找到"
     
     graph = Graph(logger)
-    graph.execute(network, context['flowId'], context['params'], context["results"])
-    result = graph.retrieve_results(context["results"])
+    result = graph.execute(network, context["task"], params=context.get("params", {}), results=context.get("results", {}))
     graph.release()
     print(json.dumps(result, indent=4, ensure_ascii=False))
 
 
 if __name__ == "__main__":
     file_path = "C:\\Users\\lornd\\Downloads\\FC804E96CF497636909FC43BE21_07186CAC_E21D4.jpg"
-    task = f"学校发了一个新的讲座通知，相关文件在 {file_path}，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
+    task = f"学校发了一个新的讲座通知，相关文件已给出，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
     
     context = {
-        "flowId": "worker",
         "task": task,
         "params": {
-            "task": task,
             "file_path": file_path,
-        },
-        "results": {
-            "result": "讲座相关信息"
         }
     }
     
