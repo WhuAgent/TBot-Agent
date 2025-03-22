@@ -63,7 +63,7 @@ class imageAgent(BaseAgent):
         super().__init__(graph, config, logger)
         
     def forward(self, messages, **kwargs):
-        task = kwargs.get("task")
+        task = kwargs.get("imageTask")
         imagePath = kwargs.get("imagePath")
         prompt = task
         content=[]

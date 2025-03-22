@@ -11,8 +11,8 @@
     "model": "deepseek-chat",
     "params": [
         {
-            "name": "task",
-            "title": "task",
+            "name": "imageTask",
+            "title": "imageTask",
             "type": "str",
             "notnull": true,
             "description": "任务描述",
@@ -29,8 +29,8 @@
     ],
     "results": [
         {
-            "name": "result",
-            "title": "result",
+            "name": "image_result",
+            "title": "image_result",
             "type": "str",
             "notnull": true,
             "description": "识别结果",
