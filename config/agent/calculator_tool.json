@@ -1,0 +1,32 @@
+{
+    "id": "calculator_tool",
+    "description": "计算工具封装",
+    "title": "calculator_tool",
+    "keywords": [
+        "智能体",
+        "计算"
+    ],
+    "manual": "http://wechat.com/xxxx.html",
+    "model": "deepseek-chat",
+    "params": [
+        {
+            "name": "computeTask",
+            "title": "computeTask",
+            "type": "str",
+            "notnull": true,
+            "description": "任务描述",
+            "defaultValue": ""
+        }
+    ],
+    "results": [
+        {
+            "name": "calculator_result",
+            "title": "calculator_result",
+            "type": "str",
+            "notnull": true,
+            "description": "计算结果",
+            "defaultValue": ""
+        }
+    ],
+    "prompt": "### 角色 ###\n  你是一位出色的计算手，擅长完成计算任务任务。现在你需要调用工具完成计算任务。"
+}
