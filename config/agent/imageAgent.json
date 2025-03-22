@@ -1,0 +1,41 @@
+{
+    "id": "imageAgent",
+    "description": "图像处理智能体",
+    "title": "imageAgent",
+    "keywords": [
+        "智能体",
+        "图像处理",
+        "图像识别"
+    ],
+    "manual": "https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions",
+    "model": "deepseek-chat",
+    "params": [
+        {
+            "name": "task",
+            "title": "task",
+            "type": "str",
+            "notnull": true,
+            "description": "任务描述",
+            "defaultValue": ""
+        },
+        {
+            "name": "imagePath",
+            "title": "imagePath",
+            "type": "str",
+            "notnull": true,
+            "description": "需要处理识别的图像地址",
+            "defaultValue": ""
+        }
+    ],
+    "results": [
+        {
+            "name": "result",
+            "title": "result",
+            "type": "str",
+            "notnull": true,
+            "description": "识别结果",
+            "defaultValue": ""
+        }
+    ],
+    "prompt": "### 角色 ###\n  你是一位图像识别助手，擅长完成他人分配给你的图像识别任务。\n"
+}

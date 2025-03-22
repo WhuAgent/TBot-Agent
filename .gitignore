@@ -9,3 +9,5 @@ test/
 try.py
 test.ipynb
 .vscode/
+test_data/
+test.py

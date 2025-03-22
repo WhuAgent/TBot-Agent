@@ -15,8 +15,8 @@ def run_task(context):
 
 
 if __name__ == "__main__":
-    file_path = "C:\\Users\\lornd\\Downloads\\FC804E96CF497636909FC43BE21_07186CAC_E21D4.jpg"
-    task = f"学校发了一个新的讲座通知，相关文件在 {file_path}，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
+    file_path = "D:\\Awork\\2025spring\\TBot-Agent\\test_data\\bird.jpg"# "C:\\Users\\lornd\\Downloads\\FC804E96CF497636909FC43BE21_07186CAC_E21D4.jpg"
+    task = f"图片中的动物是什么动物 {file_path}"
     
     context = {
         "flowId": "worker",
@@ -26,7 +26,7 @@ if __name__ == "__main__":
             "file_path": file_path,
         },
         "results": {
-            "result": "讲座相关信息"
+            "result": "猫的数量"
         }
     }
     

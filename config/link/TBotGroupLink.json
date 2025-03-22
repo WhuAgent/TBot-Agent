@@ -15,6 +15,16 @@
       "source": "ocr_tool",
       "target": "worker",
       "type": "hard"
+    },
+    {
+      "source": "worker",
+      "target": "imageAgent",
+      "type": "soft"
+    },
+    {
+      "source": "imageAgent",
+      "target": "worker",
+      "type": "hard"
     }
   ]
 }
