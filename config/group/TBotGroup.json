@@ -7,7 +7,7 @@
   "keywords": ["TBot", "任务"],
   "reference":"http://xxx/Scheduling/机器ID",
   "manual":"http://wechat.com/xxxx.html",
-  "agents": ["pdf_worker", "pdf_extract_text"],
+  "agents": ["pdf_worker", "pdf_extract_text", "pdf_extract_table", "pdf_extract_image"],
   "params":[
     { 
       "title":"task", 

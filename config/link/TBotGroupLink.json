@@ -15,6 +15,26 @@
       "source": "pdf_extract_text",
       "target": "pdf_worker",
       "type": "hard"
+    },
+    {
+      "source": "pdf_worker",
+      "target": "pdf_extract_table",
+      "type": "soft"
+    },
+    {
+      "source": "pdf_extract_table",
+      "target": "pdf_worker",
+      "type": "hard"
+    },
+    {
+      "source": "pdf_worker",
+      "target": "pdf_extract_image",
+      "type": "soft"
+    },
+    {
+      "source": "pdf_extract_image",
+      "target": "pdf_worker",
+      "type": "hard"
     }
   ]
 }
