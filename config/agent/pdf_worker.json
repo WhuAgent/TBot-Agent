@@ -1,0 +1,48 @@
+{
+    "id": "pdf_worker",
+    "description": "智能体员工",
+    "title": "pdf_worker",
+    "keywords": [
+        "智能体",
+        "员工"
+    ],
+    "manual": "http://wechat.com/xxxx.html",
+    "model": "deepseek-chat",
+    "params": [
+        {
+            "name": "task",
+            "title": "task",
+            "type": "str",
+            "notnull": true,
+            "description": "任务描述",
+            "defaultValue": ""
+        },
+        {
+            "name": "pdf_text",
+            "title": "pdf_text",
+            "type": "str",
+            "notnull": true,
+            "description": "PDF 文本内容",
+            "defaultValue": ""
+        }
+    ],
+    "results": [
+        {
+            "name": "result",
+            "title": "result",
+            "type": "str",
+            "notnull": true,
+            "description": "任务结果",
+            "defaultValue": ""
+        },
+        {
+            "name": "pdf_file_name",
+            "title": "pdf_file_name",
+            "type": "str",
+            "notnull": true,
+            "description": "PDF文件名称",
+            "defaultValue": ""
+        }
+    ],
+    "prompt": "### 角色 ###\n  你是一位出色的助手，擅长完成他人分配给你的任务。\n  \n  ### 技能 ###\n  你可以使用以下工具：\n\n  PDF 工具（pdf_extract_text）：用于提取PDF文件中的文本内容。在使用 PDF 提取文本工具时，需要提供文件路径（pdf_file_name）。\n      \n  ### 目标 ###\n  你需要理解任务需求和当前任务完成状态，进行下一步行动。\n  \n  ### 工作流 ###\n  你需要按照如下步骤进行工作：\n  \n  1. 理解任务需求和当前任务进行状态。\n  2. 根据任务需求和任务状态，判断是否需要其他智能体或工具的协助。\n  3. 如果不需要其他智能体和工具的协助，则计算出任务结果之后，返回 result 字段。\n  4. 如果需要其他智能体和工具的协助，请返回所需要的工具名称 tool_name 和工具所需的参数 tool_args。\n  \n  ### 返回方式 ###\n  请以 JSON 格式返回，包含以下字段：\n\n  think: 你的思考过程。\n  result: 任务结果，如果任务还未完成，则不需要返回该字段。\n  tool_name: 调用的其他智能体或工具的名称，如果不需要协助，则不需要返回该字段。\n  tool_args: 调用其他智能体或工具的参数，如果不需要调用其他智能体和服务，或服务不需要参数，则不需要返回该字段。\n\n  ## JSON 示例 ## \n  {\n      \"think\": \"...\",\n      \"result\": \"...\",\n      \"tool_name\": \"...\",\n      \"tool_args\": [\n        \"arg1\": \"...\",\n        \"arg2\": \"...\",\n      ]\n  }\n"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pdf_extract_text",
+  "description": "PDF 提取文本工具",
+  "title": "pdf_tool",
+  "keywords": ["PDF", "提取文本", "工具"],
+  "manual": "http://wechat.com/xxxx.html",
+  "params": [
+    {
+      "name": "pdf_file_name",
+      "title": "pdf_file_name",
+      "type": "str",
+      "notnull": true,
+      "description": "PDF 文件名称",
+      "defaultValue": ""
+    }
+  ],
+  "results": [
+    {
+      "name": "pdf_text",
+      "title": "pdf_text",
+      "type": "str",
+      "notnull": true,
+      "description": "PDF 文本内容",
+      "defaultValue": ""
+    }
+  ]
+}

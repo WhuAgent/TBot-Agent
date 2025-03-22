@@ -3,17 +3,17 @@
   "links": [
     {
       "source": "start",
-      "target": "worker",
+      "target": "pdf_worker",
       "type": "soft"
     },
     {
-      "source": "worker",
-      "target": "ocr_tool",
+      "source": "pdf_worker",
+      "target": "pdf_extract_text",
       "type": "soft"
     },
     {
-      "source": "ocr_tool",
-      "target": "worker",
+      "source": "pdf_extract_text",
+      "target": "pdf_worker",
       "type": "hard"
     }
   ]

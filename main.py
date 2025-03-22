@@ -15,11 +15,30 @@ def run_task(context):
 
 
 if __name__ == "__main__":
-    file_path = "C:\\Users\\lornd\\Downloads\\FC804E96CF497636909FC43BE21_07186CAC_E21D4.jpg"
-    task = f"学校发了一个新的讲座通知，相关文件在 {file_path}，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
-    
+    # file_path = "C:\\Users\\21972\\Downloads\\test-agent.jpg"
+    # task = f"学校发了一个新的讲座通知，相关文件在 {file_path}，能告诉我讲座什么时候在哪里举行，是有关于什么的讲座吗？"
+    #
+    # context = {
+    #     "flowId": "worker",
+    #     "task": task,
+    #     "params": {
+    #         "task": task,
+    #         "file_path": file_path,
+    #     },
+    #     "results": {
+    #         "result": "讲座相关信息"
+    #     }
+    # }
+    #
+    # run_task(context)
+
+
+    # PDF example test
+    file_path = "D:\\study\\test-agent\\text.pdf"
+    task = f"这是一个与研究相关的文件，文件地址在 {file_path}，能告诉我这个研究的目的和主要贡献吗？"
+
     context = {
-        "flowId": "worker",
+        "flowId": "pdf_worker",
         "task": task,
         "params": {
             "task": task,
@@ -29,8 +48,9 @@ if __name__ == "__main__":
             "result": "讲座相关信息"
         }
     }
-    
+
     run_task(context)
+
 
     # task = '请帮我打开文档 "C:/Users/1206232012/Desktop/test.docx" ，插入一张图片，图片位置为 "C:/Users/1206232012/Desktop/家乡.jpg" 。不需要保存和关闭文档。'
     # task = '请帮我打开文档 "C:/Users/lornd/Desktop/TBot/origin.docx"。'
