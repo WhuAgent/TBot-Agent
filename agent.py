@@ -1,6 +1,6 @@
 from agent_network.base import BaseAgent
 from agent_network.exceptions import ReportError
-
+from lxml import etree
 
 class worker(BaseAgent):
     def __init__(self, graph, config, logger):
@@ -37,21 +37,21 @@ class worker(BaseAgent):
             raise ReportError("unknown response format", "worker")
     
 
-class ocr_tool(BaseAgent):
+class xml_tool(BaseAgent):
     def __init__(self, graph, config, logger):
         super().__init__(graph, config, logger)
         
     def forward(self, messages, **kwargs):
-        ocr_file_name = kwargs.get("ocr_file_name")
-        if not ocr_file_name:
-            raise ReportError("ocr_file_name is not provided", "worker")
+        xml_file_name = kwargs.get("xml_file_name")
+        if not xml_file_name:
+            raise ReportError("xml_file_name is not provided", "worker")
         
-        import easyocr
-        reader = easyocr.Reader(['ch_sim','en'])
-        ocr_result = reader.readtext(ocr_file_name, detail=0)
-        self.log("assistant", ocr_result)
+        tree = etree.parse(xml_file_name)
+        root = tree.getroot()
+        paragraphs = root.xpath("//p/text()")
+        self.log("assistant", paragraphs)
         
         result = {
-            "ocr_result": ocr_result
+            "xml_result": paragraphs
         }
         return result, "worker"

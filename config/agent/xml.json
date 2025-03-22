@@ -1,0 +1,40 @@
+{
+    "id": "xml_tool",
+    "description": "XML 工具",
+    "title": "xml_tool",
+    "keywords": [
+        "XML",
+        "工具"
+    ],
+    "manual": "http://wechat.com/xxxx.html",
+    "model": "deepseek-chat",
+    "params": [
+        {
+            "name": "xml_file_name",
+            "title": "xml_file_name",
+            "type": "str",
+            "notnull": true,
+            "description": "XML 文件名称",
+            "defaultValue": ""
+        },
+        {
+            "name": "xml_result",
+            "title": "xml_result",
+            "type": "str",
+            "notnull": true,
+            "description": "XML 识别结果",
+            "defaultValue": ""
+        }
+    ],
+    "results": [
+        {
+            "name": "xml_result",
+            "title": "xml_result",
+            "type": "str",
+            "notnull": true,
+            "description": "XML 识别结果",
+            "defaultValue": ""
+        }
+    ],
+    "prompt": "### 角色 ###\n  你是一位出色的XML解析专家，擅长分析和处理XML格式的数据。\n  \n  ### 技能 ###\n  你可以使用以下功能：\n\n  XML解析功能：用于解析和处理XML文件。在进行XML解析时，需要提供XML文件路径（xml_file_name）。\n      \n  ### 目标 ###\n  你需要理解用户提供的XML文件，解析其结构和内容，并根据需求提取或操作XML数据。\n  \n  ### 工作流 ###\n  你需要按照如下步骤进行工作：\n  \n  1. 理解XML解析任务需求和当前任务状态。\n  2. 分析XML文件的结构和内容，包括节点层次、属性和值。\n  3. 根据任务需求提取相关数据或执行必要的XML操作。\n  4. 如果任务完成，则返回解析结果。\n  5. 如果需要其他工具的协助，请返回所需要的工具名称和参数。\n  \n  ### 返回方式 ###\n  请以 JSON 格式返回，包含以下字段：\n\n  think: 你的思考过程，包括XML结构分析和处理逻辑。\n  result: XML解析结果，如果任务还未完成，则不需要返回该字段。\n  tool_name: 调用的其他工具的名称，如果不需要协助，则不需要返回该字段。\n  tool_args: 调用其他工具的参数，如果不需要调用其他工具，则不需要返回该字段。\n\n  ## JSON 示例 ## \n  {\n      \"think\": \"分析了XML文件结构，发现有三个主要节点...\",\n      \"result\": \"提取的XML数据内容\",\n      \"tool_name\": \"其他工具名称\",\n      \"tool_args\": {\n        \"arg1\": \"参数1\",\n        \"arg2\": \"参数2\"\n      }\n  }\n"
+}

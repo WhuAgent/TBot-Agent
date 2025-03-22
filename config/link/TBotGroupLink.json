@@ -12,7 +12,17 @@
       "type": "soft"
     },
     {
+      "source": "worker",
+      "target": "xml_tool",
+      "type": "soft"
+    },
+    {
       "source": "ocr_tool",
+      "target": "worker",
+      "type": "hard"
+    },
+    {
+      "source": "xml_tool",
       "target": "worker",
       "type": "hard"
     }
